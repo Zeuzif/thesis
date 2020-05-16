@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"fina",
+				"financiers"
+			],
+			[
+				"ite",
+				"item\tItemize"
+			],
+			[
+				"ne",
+				"newline"
+			],
+			[
+				"au",
+				"auparavant"
+			],
+			[
 				"pa",
 				"page\tPage"
 			],
@@ -128,6 +144,22 @@
 		"selected_items":
 		[
 			[
+				"add t",
+				"Add This Folder To Project"
+			],
+			[
+				"add",
+				"Add Folders To Project"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"add ",
+				"Project: Add Folder"
+			],
+			[
 				"c",
 				"Set Syntax: C"
 			],
@@ -176,8 +208,7 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/zazif/Documents/these",
-		"/Users/zazif/Documents/these/general"
+		"/Users/zazif/Documents/these"
 	],
 	"file_history":
 	[

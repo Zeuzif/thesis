@@ -4,7 +4,7 @@ Comme tout projet a un cycle de vie qui débutera par une phase de lancement qui
 \begin{itemize}
 	\item la problématique.
 	\item les objectifs.
-	\item les contraintes.
+	\item la démarche à suivre.
 \end{itemize}
 Nous allons dans ce chapitre présenter l'organisme d’accueil afin d'avoir une idée sur les parties prenantes, par la suite on va définir notre problématique, après on fixe nos objectifs, ensuite on fait une étude de l'existant, enfin on explique La méthodologie de démarche suivie du PFE.
 
@@ -31,7 +31,7 @@ L'equipe du développement comporte quatre personnes:
 \section{Contexte}
 
 Ces deux dernières décennies marquent au Maroc une forte augmentation de demandes du déplacement, ce qui poussent les gouvernements a constamment amélioré les moyens de transports pour répondre à ce besoin.\newline
-Mais, malgré les efforts ces moyens de transport n'arrivent la demande toujours en croissance.\newline
+Mais, malgré les efforts ces moyens de transport n'arrivent pas a couvrir la demande toujours en croissance.\newline
 Résultat, la voiture individuelle reste le moyen le plus pratique et confortable pour se déplacer soit dans les villes, soit dans les zones non urbaines. Néanmoins, la mobilité humaine accrue combinée avec la forte utilisation de la voiture engendrent des effets néfastes sur la qualité de voyage et soulève des questions environnementales.\newline
 En effet, l'usage abusif de la voiture est source de stresse, de charges personnelles de plus en plus en hausse (à cause du prix du carburant, de l'entretient etc...) et des gazes à effet de serre.\newline
 Une solution qui s'impose comme immédiate est le partage de la voiture personnelle et qui permet à un chauffeur de la partager avec des passagers potentiels, afin d'effectuer le trajet ensemble.\newline
@@ -39,7 +39,7 @@ Donc, notre solution consiste a automatisé cette opération, en optimisant les 
 
 \section{Problématique}
 
-Dans le but de procurer un service de covoiturage répondant aux besoins de déplacement et palier aux problèmes écologiques, sociaux et économiques cités auparavant.\newline
+Dans le but de procurer un service de covoiturage répondant aux besoins de déplacement et palier aux problèmes écologiques, sociaux et financiers cités auparavant.\newline
 Les solutions qui sont présentes sur le marché ou qui font l'objet de recherche des industriels offrent des services assez limités qui se résument dans des trajets planifiés ou des trajets entre les grandes villes.\newline
 En effet, un utilisateur doit chercher une offre déjà planifié et envoyer une demande au publicateur,et récupérer ainsi les coordonnées des covoitureurs pour une éventuelle prise de contact pour un trajet bien déterminé auparavant, ce qui n'automatise pas l’opération.\newline
 Dans ce cadre, en se basant sur les attentes des utilisateurs, nous nous intéressons à trouver une solution informatique qui répond aux problèmes mentionnés avant et qui ne sont pas la priorité des créateurs de solutions existantes, et qui peuvent se résumer comme suit:
@@ -54,18 +54,115 @@ Dans ce cadre, en se basant sur les attentes des utilisateurs, nous nous intére
 
 \section{Objectifs}
 
-Dans l'optique d'apporter de nouvelles fonctionnalités et remédier aux insuffisances et limites explicitée auparavant. Notre application permettra au covoitureurs de faire des économies, aux passagers de se déplacer conformément a leurs préférences et en toute sécurité et à réduire l’émission des gazes polluants.\newline
-Effectivement, l'application permet à un chauffeur de faire un choix entre des offres instantanées (pratiques dans les zones urbains dépassant pas 30Km) et des offres entre les villes. En plus toute personne ayant l'age légal, un permis peut diviser les charges du déplacement et de l'entretient de sa voiture avec d'autres potentiels passagers. Et à un passager de se déplacer avec un prix moins cher que les transports en commun sans perdre son temps et en choisissant ses préférences (fumeur, bagages, sexe du conducteur ...).\newline
+Dans l'optique d'apporter de nouvelles fonctionnalités et remédier aux insuffisances et limites explicitées auparavant. Notre application permettra au covoitureurs de faire des économies, aux passagers de se déplacer conformément a leurs préférences et en toute sécurité et à réduire l’émission des gazes polluants.\newline
+Effectivement, l'application permet à un chauffeur de faire un choix entre des offres instantanées (pratiques dans les zones urbains dépassant pas 30 Km) et des offres entre les villes. En plus toute personne ayant l'age légal, un permis peut diviser les charges du déplacement et de l'entretient de sa voiture avec d'autres potentiels passagers. Et à un passager de se déplacer avec un prix moins cher que les transports en commun sans perdre son temps et en choisissant ses préférences (fumeur, bagages, sexe du conducteur ...). Ainsi il permet de fournir une offre en quasi temps réel à l'« usager covoitureur ». La personne souhaitant effectuer un itinéraire en covoiturage contacte le service quelques secondes avant son départ. Le service va alors chercher le conducteur adéquat qui est en mesure d'offrir le covoiturage souhaité sur l'itinéraire demandé.\newline
 L'application proposes les chemins les plus optimales avec des temps de détour pour prendre un passager courts et rapides. dans le but de réduire la consommation d’énergie et par conséquence, réduire l’émission des gazes polluants.
 En gros, l'application devrait respecter les exigences listées ci-dessous
 \begin{itemize}
-	\item Vérification de la carte d'identité(CIN) pour chaque utilisateur.
+	\item Vérification de la carte d'identité(CIN) pour chaque utilisateur pour des raisons de sécurité.
 	\item Publier une offre de covoiturage planifiées ou lancer une course instantanée.
+	\item Trouver des offres en temps réel ou réserver dans les trajets planifiés.
 	\item Afficher les trajets optimaux.
 	\item Effectuer des transactions monétaires.
 \end{itemize}
 
 \section{Étude de l'existant}
 
+Dans l'intention de faire une analyse des points forts et faibles des solutions déjà présentes actuellement et en dégager des améliorations. Nous avons recueilli toutes informations qui nous parait utiles, ce qui nous a obligé de faire le passage qui concrétise le premier contact d'un étudiant avec un domaine totalement ignoré.\newline
+Ainsi, pour faire cette tache nous avons combiné les différentes informations et qui sont: 
+\begin{itemize}
+	\item Exploitation des documents relatifs à la législation du covoiturage au Maroc.
+	\item Étude des interfaces graphiques et des fonctionnalités des application comme: Careem, Heetch, Roby, Yassir.
+	\item Recueillir des avis des utilisateurs de covoiturage sur les réseaux sociaux afin de mettre en scène leurs expériences.
+\end{itemize}
+Par la suite, ces donnés sont classés et représentes sous forme plus synthétique afin de s'inspirer et d'en tirer le meilleur.
+
 \section{La méthodologie de démarche suivie du PFE}
 
+\subsection{Mission} % (fold)
+\label{sub:mission}
+Ma mission au sein de l’équipe peut se résumer dans la conception et implémentation du service de mobilité partagée, en temps réel et en mode planifié et enrichissement du socle commun par les fonctionnalités nécessaires au bon fonctionnement du service.\newline
+Ainsi que la gestion de projet en mode Agile, depuis l’expression du besoin client, conception, prise en charge des développements, tests de qualification et participation à la publication sur l'Apple Store.\newline
+Résultats attendus et plan d’action :
+\begin{itemize}
+	\item Analyse du besoin client, exprimé par le Product Owner.
+	\item Analyse collaborative du Product Backlog et priorisation de la liste des fonctionnalités.
+	\item Définition collaborative des Sprints fonctionnels et des Artefacts du projet.
+	\item Développement de l’application en respectant les contraintes et les défis du développement mobile.
+	\item Tests unitaires et les tests fonctionnels
+	 pour vérifier que l’application répond bien au besoin exprimé et qu’elle convient à l’utilisateur final.
+	\item Soumission à l'Apple Store
+	\item Correction des bugs et mise à jour de l’application.
+\end{itemize}
+Par la suite nous allons cités quelques pré-requis techniques exigés pour aboutir au résultat souhaité:
+\begin{itemize}
+	\item Maîtrise du langage Swift et de l’environnement de développement intégré(IDE) Xcode, et du Kit de développement IOS.
+	\item CocoaPods qui est un gestionnaire de dépendances pour automatiser l’intégration d'autres bibliothèques dans notre application.
+	\item Utilisation des API Rest et de la plate-forme AWS Cloud.
+	\item Here qui est un service de cartographie.
+\end{itemize}
+% subsection mission (end)
+
+\subsection{Démarche du gestion de projet} % (fold)
+\label{sub:démarche_du_gestion_de_projet}
+Pour le volet de gestion de projet, nous avons adopté une méthode Agile plus spécifiquement Scrum qui est un cadre ou canvas (framework en anglais) simple et efficace qui repose sur 3 piliers :
+\begin{itemize}
+	\item Transparence: garantir que toutes les informations relatives à la bonne compréhension du projet sont bien communiquées aux membres de votre équipe et aux différentes parties prenantes.
+	\item Inspection: vérifier à intervalles réguliers que le projet respecte des limites acceptables et qu’il n’y a pas de déviation indésirable par rapport à la demande de votre client.
+	\item Adaptation: encouragez la correction des dérives constatées et proposez des changements appropriés afin de mieux répondre aux objectifs de votre gestion de projet.
+\end{itemize}
+Donc, le processus choisi pour le développement du projet est empirique, itératif, incrémental et agile: 
+\begin{itemize}
+	\item[$\bullet$] empirique: l'inspection quotidienne de l'état du projet qui oriente les décisions.
+	\item[$\bullet$] itératif: découper le projet en plusieurs cycles identiques ou itérations. Vous vous rapprocherez graduellement du produit ou du service final afin de limiter les risques d'erreurs.
+	\item[$\bullet$] incrémental: La partie du projet a réalisée doit être utilisable. Vous pouvez donc livrer votre client régulièrement avec des fonctionnalités complètes.
+	\item[$\bullet$] agile: vous impliquez votre client et vos utilisateurs dans votre gestion de projet. Vous choisissez toujours des méthodes pragmatiques et adaptatives pour être plus réactif aux demandes.
+\end{itemize}
+Donc pour respecter ce cadre. Premièrement, nous avons élaborer le Backlog scrum qui est destiné à recueillir tous les besoins du client que l'équipe projet doit réaliser. Il contient donc la liste des fonctionnalités intervenant dans la constitution d'un produit.
+Deuxièmement, nous avons découper la liste des fonctionnalités sur des intervalles de temps limités qu'on va appeler Sprint. et on attribut à chaque Sprint un nombre de fonctionnalités puis on applique le cycle de vie classique d'un projet informatique qui va de la modélisation jusqu'au tests.\newline
+\fig{cycle.png}{Le cycle de vie d'un projet Scrum}{0.5}
+% subsection démarche_du_gestion_de_projet (end)
+
+\subsection{Planification} % (fold)
+\label{sub:planification}
+Pour mener à bien notre travail nous avons fixé quelques itérations qui nous semblent nécessaires et prioritaires pour entamer le développement de la solution. Après concertation avec mon encadrant qui est le product owner nous avons découpé les deux itérations ou Sprints en plusieurs user storie qui est une description simple d’un besoin et qui seront listés ci-dessous :
+\begin{itemize}
+	\item[$\bullet$] Sprint 1 (en relation avec le chauffeur) sur \textbf{2 semaines}:
+		\begin{itemize}
+			\item Démarrer un trajet instantané
+			\item Recevoir et confirmer la prise en charge d’un passager.
+			\item Recevoir et rejeter la prise en charge d’un passager.
+			\item Recevoir, confirmer la prise en charge d’un passager et annulation en cours de route.
+		\end{itemize}
+	\item[$\bullet$] Sprint 2 (en relation avec le passager) sur \textbf{2 semaines}:
+		\begin{itemize}
+			\item Demande d’un covoiturage instantané.
+			\item Annulation d’un covoiturage instantané post-confirmation
+	\end{itemize}
+\end{itemize}
+% subsection planification (end)
+
+\subsection{Outils de collaborations} % (fold)
+\label{sub:outils_de_collaborations}
+
+Afin de favoriser un meilleur travail en équipe que nous allons présenter brievement ci-après.
+\subsubsection{Slack} % (fold)
+\label{ssub:subsubsection_name}
+
+Slack fonctionne à la manière d'un chat IRC organisé en canaux correspondant à autant de sujets de discussion. La plateforme permet également de conserver une trace de tous les échanges, et permet le partage de fichiers au sein des conversations et intègre en leur sein des services externes comme GitHub, Dropbox, Google Drive ou encore Heroku pour centraliser le suivi et la gestion d'un projet. 
+% subsubsection subsubsection_name (end)
+
+\subsubsection{Trello} % (fold)
+\label{ssub:subsubsection_name}
+
+Trello est un outil de gestion de projet en ligne. Il repose sur une organisation des projets en planches listant des cartes, chacune représentant des tâches. Les cartes sont assignables à des utilisateurs et sont mobiles d'une planche à l'autre, traduisant leur avancement. Afin de visualiser graphiquement nos user stories et l’état d'avancement des Sprints.
+
+% subsubsection subsubsection_name (end)
+
+\subsubsection{Git} % (fold)
+\label{ssub:git}
+
+Git est un logiciel de gestion de versions, ce qui veut dire qu'il permet de stocker l’ensemble des fichiers sources, en conservant la chronologie de toutes les modifications qui ont été effectuées.\newline
+L'outil est décentralisé ce qui veut dire que chacun des membres à sa propre version sur le local, et qu'il peut modifier à sa guise. Mais après avoir terminer le développement d'une fonctionnalités, il synchronise avec les versions des autres membres.
+% subsubsection git (end)
+% subsection outils_de_collaborations (end)
