@@ -124,6 +124,17 @@ citecolor=black %couleur des références %sous Acrobat.
  \end{figure}
 }
 
+\newcommand{\figlabel}[4]{
+ \begin{figure}[!ht]
+ \begin{center}
+ \scalebox{#3}{\includegraphics{figs/#1}}
+ \vspace{-0.1in}
+ \caption{\label{#1} #2}
+ \label{fig:#4}
+ \end{center}
+ \end{figure}
+}
+
 \newcommand{\figtwo}[8]{
  \begin{figure}
  \parbox[b]{#4 \textwidth}{
@@ -143,3 +154,5 @@ citecolor=black %couleur des références %sous Acrobat.
  }
  \end{figure}
 }
+
+\newcommand{\itemb}{\item[$\bullet$]}
