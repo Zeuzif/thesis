@@ -90,10 +90,10 @@ plutôt un autre
 % subsection diagramme_de_classe (end)
 \section{Conception} % (fold)
 \label{sec:conception}
-
-\subsection{processus du matching} % (fold)
-\label{sub:algorithme}
 Après la description formelle de nos besoins, on va décrire comment se déroule le processus de matching ou de jumelage qui est le cœur de notre métier.\newline
+\figlabel{logigramme.png}{logigramme du processus de matching}{0.5}{logigramme}\newline
+La figure ~\ref{fig:logigramme} décrit étape par étape les différents taches. Notant que ce processus se répète trois fois, si aucune offre n'est trouvée on notifie le passager, dans ce cas il a la possibilité de relancer la recherche manuellement.
+\subsection{processus du matching} % (fold)
 Pour des raisons de confidentialité, on ne va pas rentrer dans les détails et on va se limiter aux cas simples.\newline
 Au début du processus, un conducteur qui veut partager sa voiture avec des passagers potentiels enregistre 
 une offre qu'on va noter $O = (O_D, O_A)$, où $O_D$ est le point (position géographique) de départ, et $O_A$
