@@ -29,7 +29,7 @@ Tout service de ceux qui suivent n'est exploitable que si l'utilisateur à termi
 	\item[$\bullet$] \textbf{lancement du trajet} : un conducteur peut lancer un covoiturage instantané, l’itinéraire optimal doit s’afficher tout au long de la course. il reçoit aussi des notifications de prise en charge des passagers.
 	\item[$\bullet$] \textbf{Demande de covoiturage} : un passager peut demander un covoiturage instantané (la saisie de la demande par le système doit être en temps réel), ou consulter la liste des covoiturages planifiés afin de réserver sa place.
 	\item[$\bullet$] \textbf{Réseau des utilisateurs} : Les utilisateurs peuvent avoir un réseau ainsi que, synchroniser les leurs dans les réseaux sociaux.
-	\item[$\bullet$] \textbf{Le matching} : l'affectation des conducteurs aux passagers doit se faire selon les préférences des deux, par préférences on entend fumeur, bagages, sexe.
+	\item[$\bullet$] \textbf{Le matching} : l'affectation des conducteurs aux passagers offre un modèle riche qui tient compte non seulement de l'adéquation des itinéraires, mais aussi de l'âge, du sexe et le nombre de valises.
 	\item[$\bullet$] \textbf{Historique des trajets} : tout utilisateur doit avoir la liste de ses trajets planifiés ou qui ont été faits.
 	\item[$\bullet$] \textbf{Annulation} : tout utilisateur doit pouvoir annuler des voyages.
 	\item[$\bullet$] \textbf{Paiement} : Un passager doit pouvoir payer soit par cash ou par carte bancaire.
@@ -64,5 +64,54 @@ Nous allons tracer le diagramme de cas d'utilisation et quelques diagrammes de s
 \label{sub:diagrammes_de_cas_d_utilisation}
 Un cas d’utilisation (use case) représente un lot d’actions qui sont réalisées par le système et qui met donc en évidence de quelle façon les acteurs utiliseront le logiciel.
 
-\fig{usecasediagram.png}{diagramme de cas d'utilisation}{0.5}
+\fig{usecasediagram.png}{diagramme de cas d'utilisation}{0.45}
 % subsection diagrammes_de_cas_d_utilisation (end)
+
+\subsection{Diagrammes de séquences} % (fold)
+\label{sub:diagrammes_de_séquence}
+% subsection diagrammes_de_séquence (end)
+Validation des cas d'utilisation,
+pour comprendre la logique de
+l'application
+\\Complète le diagramme des cas
+d’utilisation en mettant en
+évidence les objets et leurs
+interactions d’un point de vue
+temporel
+\\Outils de documentation, peu
+rigoureux, pas tout le temps
+nécessaires
+\\Pas de flots de contrôle dans un
+diagramme de séquence, en faire
+plutôt un autre 
+\subsection{Diagramme de classe} % (fold)
+\label{sub:diagramme_de_classe}
+
+% subsection diagramme_de_classe (end)
+\section{Conception} % (fold)
+\label{sec:conception}
+
+\subsection{processus du matching} % (fold)
+\label{sub:algorithme}
+Après la description formelle de nos besoins, on va décrire comment se déroule le processus de matching ou de jumelage qui est le cœur de notre métier.\newline
+Pour des raisons de confidentialité, on ne va pas rentrer dans les détails et on va se limiter aux cas simples.\newline
+Au début du processus, un conducteur qui veut partager sa voiture avec des passagers potentiels enregistre 
+une offre qu'on va noter $O = (O_D, O_A)$, où $O_D$ est le point (position géographique) de départ, et $O_A$
+le point d'arrivée. En plus le conducteur nous renseigne sa position en temps réel $O_t$, qu'elle met à jour chaque fois qu'il s'est déplacé d'une distance $d$. Le système procède au découpage du trajet O en point distancé de $d$ ce qui nous donne que $O = (O_{1}, O_{2},\ldots , O_{n})$.\newline
+Un passager qui demande un covoiturage enregistre sa demande qu'on note $D = (D_D, D_A)$, où $D_D$ est le point (position géographique) de départ, et $D_A$ le point d'arrivée.\newline
+Dans un premier temps on va considérer le scenario où on a une seule offre et une seule demande. Notons $C_D$ et $C_A$ l'ensemble des points des deux cercles ayant pour centre respectivement $D_D$ et $D_A$ et pour rayon $r$.
+Pour qu'un covoiturage ait lieu il faut : 
+\begin{equation}
+O_R \subset C_D 
+\label{eqution1}
+\end{equation}
+ce qui veut dire que la position actuelle du chauffeur est d'une distance moins de $r$.
+Deuxièmement, on va vérifier que le point d'arrivée du passager est sur le chemin du conducteur. Ce qui peut se traduire en :
+\begin{equation}
+(O_{1}, O_{2},\ldots , O_{n}) \cap C_D \ne \emptyset
+\label{eqution2}
+\end{equation}
+Dans le cas de plusieurs offres l'algorithme choisit le chauffeur on calculant un score qui se détermine par la convenance des préférences du chauffeur et le passager. Et par le temps de détour pour les deux offres, par détour on apprend le temps qui va mettre le chauffeur pour prendre en charge le passager.
+\fig{asset.png}{processus de matching dans le cas d'une seule offre}{0.5}
+% subsection algorithme (end)
+% section conception (end)
