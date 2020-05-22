@@ -1,5 +1,5 @@
 \chapter{Analyse des besoins}
-Ce chapitre rassemble les ressources pour mener l'expression des besoins, nous allons commencé par l'identification des acteurs, puis nous passons à la spécification des besoins et faire une analyse en s'appuyant sur UML, enfin nous donnons un aperçu sur l'algorithme de jumelage qui est le cœur de notre métier.
+Ce chapitre rassemble les ressources pour mener l'expression des besoins, nous allons commencer par l'identification des acteurs, puis nous passons à la spécification des besoins et faire une analyse en s'appuyant sur UML, enfin nous donnons un aperçu sur l'algorithme de jumelage qui est le cœur de notre métier.
 % Containing a comprehensive description of the design chosen, how it addresses the problem, and why it is designed the way it is.
 \section{Identification des acteurs}
 Dans cette section on va décrire \textbf{QUI} utilisera notre système. On commence dans un premier lieu par considérer notre système comme une boite noire pour répondre à la question qui va interagir avec notre logiciel ?\newline
@@ -16,11 +16,11 @@ La figure ~\ref{fig:contextDiag} donne une représentation graphique du diagramm
 \section{Spécification des besoins}
 \subsection{Besoins fonctionnels} % (fold)
 \label{sub:besoins_fonctionnels}
-Après la définition des acteurs de notre application, on détermine les besoins de chaque acteurs pour répondre à la question \textbf{QUI} devra pouvoir faire \textbf{QUOI} ?\newline
+Après la définition des acteurs de notre application, on détermine les besoins de chaque acteur pour répondre à la question \textbf{QUI} devra pouvoir faire \textbf{QUOI} ?\newline
 L'expression de la liste des fonctionnalités est comme suit :
 \begin{itemize}
 	\item[$\bullet$] \textbf{Authentification} : chaque utilisateur doit pouvoir s'inscrire et activer son compte en vérifiant son numéro du téléphone et son émail.
-	\item[$\bullet$] \textbf{Consultation des offres} : chaque utilisateur doit pouvoir après activation du compte consulter la liste des offres planifiés.
+	\item[$\bullet$] \textbf{Consultation des offres} : chaque utilisateur doit pouvoir après activation du compte consulter la liste des offres planifiées.
 	\item[$\bullet$] \textbf{Terminer le KYC} : l'utilisateur doit pouvoir prouver son identité afin que l’ensemble des services seront accessibles (Identification doit être automatisée).
 \end{itemize}
 Tout service de ceux qui suivent n'est exploitable que si l'utilisateur à terminer le processus KYC.
@@ -42,15 +42,14 @@ Cette liste n'est pas exhaustive, et certains processus métiers ont été élim
 \label{sub:besoins_non_fonctionnels}
 Outre les besoins fonctionnels, un système d'informations doit répondre à un ensemble d'exigences non fonctionnelles.
 \begin{itemize}
-	\itemb \textbf{Performance} : le chargement de l’application, ouverture d’écran, des délais de rafraîchissement et le temps de réponse de l'algorithme de matching.
+	\itemb \textbf{Performance} : le chargement rapide de l’application, ouverture d’écran, des délais de rafraîchissement et le temps de réponse de l'algorithme de matching.
 	\itemb \textbf{Disponibilité} : l'application doit être opérationnelle à n'importe quel moment.
 	\itemb \textbf{Architecture} : le respect du modèle du développement logiciel imposer par Apple.
 	\itemb \textbf{Tests} : les tests unitaires doivent être écrits et couvrir 90\% du code.
 	\itemb \textbf{Ergonomie} : la densité d’éléments sur les écrans, la disposition et le flux, les couleurs.
 	\itemb \textbf{Interface graphique} : les interfaces graphiques doivent être responsive c'est à dire, elles s'adaptent aux différentes tailles d’écran des appareils iOS. (Dans notre cas on va développer notre application que pour le mode portrait)
-	\itemb \textbf{Sécurité} : les différents échanges entre les composants de l'application doivent être chiffrés. l’accès a l'API se limite a nos application clientes. protéger les données de l'utilisateur comme la photo de sa CIN.
+	\itemb \textbf{Sécurité} : les différents échanges entre les composants de l'application doivent être chiffrés. l’accès à l'API se limite à nos application clientes. protéger les données de l'utilisateur exemple : infos personnelles.
 	\itemb \textbf{Extensibilité} : le projet se développe dans un petit périmètre au sein d'une start-up qui cherche encore son business plan, ce qui implique l'ajout dans l'avenir de plusieurs autres fonctionnalités.
-	\itemb \textbf{Évolutivité} : avoir 
 \end{itemize}
 En plus de ces besoins l'application a des défis à surmonter vu que nous développons dans un environnement mobile : 
 \begin{itemize}
@@ -137,10 +136,10 @@ Chaque sous-section ci-dessous contient une fiche descriptive et le diagramme de
 % subsubsection demander_un_covoiturage_instantané (end)
 \subsection{Diagramme de classe d'analyse} % (fold)
 % subsubsection kyc (end)
-Pour identifier les éléments du domaine et les relations et interactions entre ces éléments, le diagramme de classe fourni une représentation abstraite des entités du système qui vont interagir pour réaliser les cas d'utilisation.\newline
+Pour identifier les éléments du domaine et les relations et interactions entre ces éléments, le diagramme de classe fournit une représentation des entités du système qui vont interagir pour réaliser les cas d'utilisation.\newline
 Les classe Offre et Demande présentent sur le diagramme dépendent du covoiturage instantanée.\newline
-La classe Preference que je n'ai pas mentionné sur le diagramme représente les préférences soit du passager soit du conducteur dans les deux cas du covoiturage (planifié, instantané) et qui a comme attributs comme fumeur, sexe....
-Les documents cités dans cette partie d'analyse sont le produit d'une première réflexion et ils sont été améliorés dans la phase du développement, donc ils ne vont pas servir comme moyens de documentation.
+La classe Preference que je n'ai pas mentionné sur le diagramme représente les préférences soit du passager soit du conducteur dans les deux cas du covoiturage (planifié, instantané) et qui a comme attributs fumeur, sexe....
+Les documents cités dans cette partie d'analyse sont le produit d'une première réflexion et ils ont été améliorés dans la phase du développement, donc ils ne vont pas servir comme moyens de documentation.
 \fig{classe.png}{diagramme de classe métier}{0.5}
 % subsection diagramme_de_classe (end)
 \clearpage
@@ -156,7 +155,7 @@ La figure ~\ref{fig:logigramme} décrit étape par étape les différents taches
 Pour des raisons de confidentialité, on ne va pas rentrer dans les détails d'implémentation et on va se limiter aux cas simples.\cite{schreieck2016matching}\newline
 Au début du processus, un conducteur qui veut partager sa voiture avec des passagers potentiels enregistre 
 une offre qu'on va noter $O = (O_D, O_A)$, où $O_D$ est le point (position géographique) de départ, et $O_A$
-le point d'arrivée. En plus le conducteur nous renseigne sa position en temps réel $O_t$, qu'elle met à jour chaque fois qu'il s'est déplacé d'une distance $d$. Le système procède au découpage du trajet O en point distancé de $d$ ce qui nous donne que $O = (O_{1}, O_{2},\ldots , O_{n})$.\newline
+le point d'arrivée. En plus le conducteur nous renseigne sa position en temps réel $O_t$, qu'elle met à jour chaque fois qu'il s'est déplacé d'une distance $d$. Le système procède au calcul et au découpage du trajet O en points distancés de $d$ ce qui nous donne que $O = (O_{1}, O_{2},\ldots , O_{n})$ avec $O_{1} = O_D$ et $O_{n} = O_A$ .\newline
 Un passager qui demande un covoiturage enregistre sa demande qu'on note $D = (D_D, D_A)$, où $D_D$ est le point (position géographique) de départ, et $D_A$ le point d'arrivée.\newline
 Dans un premier temps on va considérer le scenario où on a une seule offre et une seule demande. Notons $C_D$ et $C_A$ l'ensemble des points des deux cercles ayant pour centre respectivement $D_D$ et $D_A$ et pour rayon $r$.
 Pour qu'un covoiturage ait lieu il faut : 
@@ -175,5 +174,4 @@ Dans le cas de plusieurs offres l'algorithme choisit le chauffeur en calculant u
 % subsection algorithme (end)
 % section conception (end)
 \paragraph{Conclusion} % (fold)
-\label{par:conclusion}
 Ce premier chapitre avait pour finalité l'identification et analyse des besoins, et la présentation de l'algorithme passons maintenant à l'implémentation.
