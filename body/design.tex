@@ -1,5 +1,5 @@
 \chapter{Analyse des besoins}
-
+Ce chapitre rassemble les ressources pour mener l'expression des besoins, nous allons commencé par l'identification des acteurs, puis nous passons à la spécification des besoins et faire une analyse en s'appuyant sur UML, enfin nous donnons un aperçu sur l'algorithme de jumelage qui est le cœur de notre métier.
 % Containing a comprehensive description of the design chosen, how it addresses the problem, and why it is designed the way it is.
 \section{Identification des acteurs}
 Dans cette section on va décrire \textbf{QUI} utilisera notre système. On commence dans un premier lieu par considérer notre système comme une boite noire pour répondre à la question qui va interagir avec notre logiciel ?\newline
@@ -70,7 +70,6 @@ Un cas d’utilisation (use case) représente un lot d’actions qui sont réali
 
 \fig{usecasediagram.png}{diagramme de cas d'utilisation}{0.5}
 % subsection diagrammes_de_cas_d_utilisation (end)
-
 \subsection{Diagrammes de séquences} % (fold)
 \label{sub:diagrammes_de_séquence}
 % subsection diagrammes_de_séquence (end)
@@ -89,7 +88,7 @@ Chaque sous-section ci-dessous contient une fiche descriptive et le diagramme de
     Post-conditions & création d'un nouveau utilisateur \\ \hline
     \end{tabular}
 \end{center}
-\fig{sequence_insc.png}{diagramme de séquence inscription}{0.3}
+\fig{sequence_insc.png}{diagramme de séquence inscription}{0.25}
 
 \subsubsection{Terminer KYC} % (fold)
 \begin{center}
@@ -134,17 +133,17 @@ Chaque sous-section ci-dessous contient une fiche descriptive et le diagramme de
     \end{tabular}
 \end{center}
 \fig{sequence_passager.png}{diagramme de séquence demander un covoiturage instantané}{0.6}
-
+\clearpage
 % subsubsection demander_un_covoiturage_instantané (end)
-
 \subsection{Diagramme de classe d'analyse} % (fold)
 % subsubsection kyc (end)
 Pour identifier les éléments du domaine et les relations et interactions entre ces éléments, le diagramme de classe fourni une représentation abstraite des entités du système qui vont interagir pour réaliser les cas d'utilisation.\newline
 Les classe Offre et Demande présentent sur le diagramme dépendent du covoiturage instantanée.\newline
 La classe Preference que je n'ai pas mentionné sur le diagramme représente les préférences soit du passager soit du conducteur dans les deux cas du covoiturage (planifié, instantané) et qui a comme attributs comme fumeur, sexe....
 Les documents cités dans cette partie d'analyse sont le produit d'une première réflexion et ils sont été améliorés dans la phase du développement, donc ils ne vont pas servir comme moyens de documentation.
-\fig{classe.png}{diagramme de classe métier}{0.8}
+\fig{classe.png}{diagramme de classe métier}{0.5}
 % subsection diagramme_de_classe (end)
+\clearpage
 \section{Aperçu de l'algorithme de covoiturage} % (fold)
 \label{sec:Aperçu de l'algorithme de covoiturage}
 \subsection{Étapes de l'algorithme} % (fold)
@@ -175,3 +174,6 @@ Dans le cas de plusieurs offres l'algorithme choisit le chauffeur en calculant u
 \fig{matching.png}{processus de matching dans le cas d'une seule offre}{0.5}
 % subsection algorithme (end)
 % section conception (end)
+\paragraph{Conclusion} % (fold)
+\label{par:conclusion}
+Ce premier chapitre avait pour finalité l'identification et analyse des besoins, et la présentation de l'algorithme passons maintenant à l'implémentation.
