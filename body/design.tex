@@ -1,4 +1,4 @@
-\chapter{Analyse des besoins et conception}
+\chapter{Analyse des besoins}
 
 % Containing a comprehensive description of the design chosen, how it addresses the problem, and why it is designed the way it is.
 \section{Identification des acteurs}
@@ -28,13 +28,14 @@ Tout service de ceux qui suivent n'est exploitable que si l'utilisateur à termi
 	\item[$\bullet$] \textbf{Ajout des offres} : un chauffeur peut publier des offres de covoiturages planifiées.
 	\item[$\bullet$] \textbf{lancement du trajet} : un conducteur peut lancer un covoiturage instantané, l’itinéraire optimal doit s’afficher tout au long de la course. il reçoit aussi des notifications de prise en charge des passagers.
 	\item[$\bullet$] \textbf{Demande de covoiturage} : un passager peut demander un covoiturage instantané (la saisie de la demande par le système doit être en temps réel), ou consulter la liste des covoiturages planifiés afin de réserver sa place.
-	\item[$\bullet$] \textbf{Réseau des utilisateurs} : Les utilisateurs peuvent avoir un réseau ainsi que, synchroniser les leurs dans les réseaux sociaux.
+	\item[$\bullet$] \textbf{Réseau des utilisateurs} : Les utilisateurs peuvent avoir un réseau d'amis, ainsi que, synchroniser ou inviter leurs camarades dans les réseaux sociaux.
 	\item[$\bullet$] \textbf{Le matching} : l'affectation des conducteurs aux passagers offre un modèle riche qui tient compte non seulement de l'adéquation des itinéraires, mais aussi de l'âge, du sexe et le nombre de valises.
 	\item[$\bullet$] \textbf{Historique des trajets} : tout utilisateur doit avoir la liste de ses trajets planifiés ou qui ont été faits.
+	\item[$\bullet$] \textbf{Historique des places favoris} : tout utilisateur peut garder une liste de place favorites pour faciliter la recherche des positions.
 	\item[$\bullet$] \textbf{Annulation} : tout utilisateur doit pouvoir annuler des voyages.
-	\item[$\bullet$] \textbf{Paiement} : Un passager doit pouvoir payer soit par cash ou par carte bancaire.
+	\item[$\bullet$] \textbf{Paiement} : Un passager doit pouvoir payer soit par cash ou par la création d'un portefeuille (Wallet) qui lui permet d'envoyer, recevoir, contrôler ses transactions.
 \end{itemize}
-Cette liste n'est pas exhaustive, et certaines fonctionnalités ont été éliminées pour des raisons de clarté.
+Cette liste n'est pas exhaustive, et certains processus métiers ont été éliminés pour des raisons du degré de leurs importances et d’allégement de ce document.
 % subsection besoins_fonctionnels (end)
 
 \subsection{Besoins non fonctionnels} % (fold)
@@ -43,11 +44,13 @@ Outre les besoins fonctionnels, un système d'informations doit répondre à un 
 \begin{itemize}
 	\itemb \textbf{Performance} : le chargement de l’application, ouverture d’écran, des délais de rafraîchissement et le temps de réponse de l'algorithme de matching.
 	\itemb \textbf{Disponibilité} : l'application doit être opérationnelle à n'importe quel moment.
-	\itemb \textbf{Architecture} : le respect du modèle du développement logiciel MVC imposer par Apple.
+	\itemb \textbf{Architecture} : le respect du modèle du développement logiciel imposer par Apple.
 	\itemb \textbf{Tests} : les tests unitaires doivent être écrits et couvrir 90\% du code.
 	\itemb \textbf{Ergonomie} : la densité d’éléments sur les écrans, la disposition et le flux, les couleurs.
 	\itemb \textbf{Interface graphique} : les interfaces graphiques doivent être responsive c'est à dire, elles s'adaptent aux différentes tailles d’écran des appareils iOS. (Dans notre cas on va développer notre application que pour le mode portrait)
 	\itemb \textbf{Sécurité} : les différents échanges entre les composants de l'application doivent être chiffrés. l’accès a l'API se limite a nos application clientes. protéger les données de l'utilisateur comme la photo de sa CIN.
+	\itemb \textbf{Extensibilité} : le projet se développe dans un petit périmètre au sein d'une start-up qui cherche encore son business plan, ce qui implique l'ajout dans l'avenir de plusieurs autres fonctionnalités.
+	\itemb \textbf{Évolutivité} : avoir 
 \end{itemize}
 En plus de ces besoins l'application a des défis à surmonter vu que nous développons dans un environnement mobile : 
 \begin{itemize}
@@ -57,44 +60,101 @@ En plus de ces besoins l'application a des défis à surmonter vu que nous déve
 \end{itemize}
 % subsection besoins_non_fonctionnels (end)
 
-\section{Analyse des besoins}
+\section{Modélisation métier}
 Nous avons identifié les acteurs et un certain nombre de fonctionnalités. Maintenant il est temps de définir en détail chaque fonction et l'attribuer à un acteur.
-Nous allons tracer le diagramme de cas d'utilisation et quelques diagrammes de séquence système.
+Nous allons tracer le diagramme de cas d'utilisation, quelques diagrammes de séquence système et un diagramme de classe d'analyse.\newline
+Vu la méthodologie que nous avons adoptée, nous n’avons pas fait une analyse détaillée des besoins, ce qui veut dire que nous sommes limités aux diagrammes métier sans faire les diagrammes de conception puisque nous étions en communication permanente avec le client (product owner).
 \subsection{Diagramme de cas d'utilisation} % (fold)
 \label{sub:diagrammes_de_cas_d_utilisation}
 Un cas d’utilisation (use case) représente un lot d’actions qui sont réalisées par le système et qui met donc en évidence de quelle façon les acteurs utiliseront le logiciel.
 
-\fig{usecasediagram.png}{diagramme de cas d'utilisation}{0.45}
+\fig{usecasediagram.png}{diagramme de cas d'utilisation}{0.5}
 % subsection diagrammes_de_cas_d_utilisation (end)
 
 \subsection{Diagrammes de séquences} % (fold)
 \label{sub:diagrammes_de_séquence}
 % subsection diagrammes_de_séquence (end)
-Validation des cas d'utilisation,
-pour comprendre la logique de
-l'application
-\\Complète le diagramme des cas
-d’utilisation en mettant en
-évidence les objets et leurs
-interactions d’un point de vue
-temporel
-\\Outils de documentation, peu
-rigoureux, pas tout le temps
-nécessaires
-\\Pas de flots de contrôle dans un
-diagramme de séquence, en faire
-plutôt un autre 
-\subsection{Diagramme de classe} % (fold)
-\label{sub:diagramme_de_classe}
+Afin de faire une validation des cas d'utilisation, et compléter le diagramme des use case en mettant en
+évidence les acteurs et leurs interactions avec le système d’un point de vue temporel, les digrammes de séquence nous sert de support.\newline
+Chaque sous-section ci-dessous contient une fiche descriptive et le diagramme de séquence.
+\subsubsection{Inscription} % (fold)
+\begin{center}
+    \begin{tabular}{ | l | p{10cm} |}
+    \hline
+    Titre & Inscription \\ \hline
+    Acteur(s) & User \\ \hline
+    Description succincte & l'inscription doit être possible pour tout utilisateur qui a déjà installé l'application \\ \hline
+    Pré-conditions & aucunes \\ \hline
+    Démarrage & l'utilisateur appuie sur le bouton inscription \\ \hline
+    Post-conditions & création d'un nouveau utilisateur \\ \hline
+    \end{tabular}
+\end{center}
+\fig{sequence_insc.png}{diagramme de séquence inscription}{0.3}
 
+\subsubsection{Terminer KYC} % (fold)
+\begin{center}
+    \begin{tabular}{ | l | p{10cm} |}
+    \hline
+    Titre & Terminer KYC \\ \hline
+    Acteur(s) & User \\ \hline
+    Description succincte & après son inscription un utilisateur doit valider son identité pour pouvoir profiter de tous les services \\ \hline
+    Pré-conditions & inscription \\ \hline
+    Démarrage & l'utilisateur clique sur le popup qui le notifie de vérifier son compte \\ \hline
+    Post-conditions & vérification de l'utilisateur \\ \hline
+    \end{tabular}
+\end{center}
+\fig{sequence_kyc}{diagramme de séquence de validation du processus KYC}{0.6}
+% subsubsection processus_kyc (end)
+
+\subsubsection{Démarrer un trajet instantané} % (fold)
+\begin{center}
+    \begin{tabular}{ | l | p{10cm} |}
+    \hline
+    Titre & Démarrer un trajet instantané \\ \hline
+    Acteur(s) & Driver \\ \hline
+    Description succincte & un chauffeur doit pouvoir lancer une offre de covoiturage \\ \hline
+    Pré-conditions & terminer le KYC \\ \hline
+    Démarrage & le conducteur rempli sa position d'arrivée \\ \hline
+    Post-conditions & ajout de l'offre \\ \hline
+    \end{tabular}
+\end{center}
+\fig{sequence_conducteur.png}{diagramme de séquence démarrer un trajet instantané}{0.6}
+% subsubsection démarrer_un_covoiturage_instantané (end)
+
+\subsubsection{Demander un covoiturage instantané} % (fold)
+\begin{center}
+    \begin{tabular}{ | l | p{10cm} |}
+    \hline
+    Titre & Demander un covoiturage instantané \\ \hline
+    Acteur(s) & Passenger \\ \hline
+    Description succincte & un chauffeur doit pouvoir lancer une demande de covoiturage \\ \hline
+    Pré-conditions & terminer le KYC \\ \hline
+    Démarrage & le passager rempli sa position d'arrivée \\ \hline
+    Post-conditions & lancement de l'algorithme de matching \\ \hline
+    \end{tabular}
+\end{center}
+\fig{sequence_passager.png}{diagramme de séquence demander un covoiturage instantané}{0.6}
+
+% subsubsection demander_un_covoiturage_instantané (end)
+
+\subsection{Diagramme de classe d'analyse} % (fold)
+% subsubsection kyc (end)
+Pour identifier les éléments du domaine et les relations et interactions entre ces éléments, le diagramme de classe fourni une représentation abstraite des entités du système qui vont interagir pour réaliser les cas d'utilisation.\newline
+Les classe Offre et Demande présentent sur le diagramme dépendent du covoiturage instantanée.\newline
+La classe Preference que je n'ai pas mentionné sur le diagramme représente les préférences soit du passager soit du conducteur dans les deux cas du covoiturage (planifié, instantané) et qui a comme attributs comme fumeur, sexe....
+Les documents cités dans cette partie d'analyse sont le produit d'une première réflexion et ils sont été améliorés dans la phase du développement, donc ils ne vont pas servir comme moyens de documentation.
+\fig{classe.png}{diagramme de classe métier}{0.8}
 % subsection diagramme_de_classe (end)
-\section{Conception} % (fold)
-\label{sec:conception}
+\section{Aperçu de l'algorithme de covoiturage} % (fold)
+\label{sec:Aperçu de l'algorithme de covoiturage}
+\subsection{Étapes de l'algorithme} % (fold)
 Après la description formelle de nos besoins, on va décrire comment se déroule le processus de matching ou de jumelage qui est le cœur de notre métier.\newline
 \figlabel{logigramme.png}{logigramme du processus de matching}{0.5}{logigramme}\newline
 La figure ~\ref{fig:logigramme} décrit étape par étape les différents taches. Notant que ce processus se répète trois fois, si aucune offre n'est trouvée on notifie le passager, dans ce cas il a la possibilité de relancer la recherche manuellement.
-\subsection{processus du matching} % (fold)
-Pour des raisons de confidentialité, on ne va pas rentrer dans les détails et on va se limiter aux cas simples.\newline
+% subsection subsection_name (end)
+
+\subsection{Processus du matching} % (fold)
+Pour des raisons de confidentialité, on ne va pas rentrer dans les détails d'implémentation et on va se limiter aux cas simples.\cite{schreieck2016matching}\newline
 Au début du processus, un conducteur qui veut partager sa voiture avec des passagers potentiels enregistre 
 une offre qu'on va noter $O = (O_D, O_A)$, où $O_D$ est le point (position géographique) de départ, et $O_A$
 le point d'arrivée. En plus le conducteur nous renseigne sa position en temps réel $O_t$, qu'elle met à jour chaque fois qu'il s'est déplacé d'une distance $d$. Le système procède au découpage du trajet O en point distancé de $d$ ce qui nous donne que $O = (O_{1}, O_{2},\ldots , O_{n})$.\newline
@@ -102,7 +162,7 @@ Un passager qui demande un covoiturage enregistre sa demande qu'on note $D = (D_
 Dans un premier temps on va considérer le scenario où on a une seule offre et une seule demande. Notons $C_D$ et $C_A$ l'ensemble des points des deux cercles ayant pour centre respectivement $D_D$ et $D_A$ et pour rayon $r$.
 Pour qu'un covoiturage ait lieu il faut : 
 \begin{equation}
-O_R \subset C_D 
+O_t \subset C_D 
 \label{eqution1}
 \end{equation}
 ce qui veut dire que la position actuelle du chauffeur est d'une distance moins de $r$.
@@ -111,7 +171,7 @@ Deuxièmement, on va vérifier que le point d'arrivée du passager est sur le ch
 (O_{1}, O_{2},\ldots , O_{n}) \cap C_D \ne \emptyset
 \label{eqution2}
 \end{equation}
-Dans le cas de plusieurs offres l'algorithme choisit le chauffeur on calculant un score qui se détermine par la convenance des préférences du chauffeur et le passager. Et par le temps de détour pour les deux offres, par détour on apprend le temps qui va mettre le chauffeur pour prendre en charge le passager.
-\fig{asset.png}{processus de matching dans le cas d'une seule offre}{0.5}
+Dans le cas de plusieurs offres l'algorithme choisit le chauffeur en calculant un score qui se détermine par la convenance des préférences du chauffeur et le passager (fumeur, bagages, sexe...). Et par le temps de détour des deux offres, par détour on apprend le temps qui va mettre le chauffeur pour prendre en charge le passager.
+\fig{matching.png}{processus de matching dans le cas d'une seule offre}{0.5}
 % subsection algorithme (end)
 % section conception (end)
