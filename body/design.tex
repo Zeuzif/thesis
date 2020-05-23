@@ -10,8 +10,8 @@ les entités ou acteurs qui entre en jeu sont :
 	\item[$\bullet$] Passager: doit pouvoir faire des demandes de covoiturage instantanées et de réserver sa place dans les autres planifiées.
 \end{itemize}
 Il convient de noter que nos acteurs ont plus qu'un rôle qu'une personne physique, puisque une personne physique peut à la fois être un chauffeur et un passager.\newline
-La figure ~\ref{fig:contextDiag} donne une représentation graphique du diagramme du contexte statique sans rentrer dans le détail des cardinalités.
-\figlabel{contextDiagram.png}{diagramme de contexte statique}{0.7}{contextDiag}
+La figure \Figref{contextDiagram.png} donne une représentation graphique du diagramme du contexte statique sans rentrer dans le détail des cardinalités.
+\fig{contextDiagram.png}{diagramme de contexte statique}{0.7}
 
 \section{Spécification des besoins}
 \subsection{Besoins fonctionnels} % (fold)
@@ -76,6 +76,7 @@ Afin de faire une validation des cas d'utilisation, et compléter le diagramme d
 évidence les acteurs et leurs interactions avec le système d’un point de vue temporel, les digrammes de séquence nous sert de support.\newline
 Chaque sous-section ci-dessous contient une fiche descriptive et le diagramme de séquence.
 \subsubsection{Inscription} % (fold)
+\begin{table}[H]
 \begin{center}
     \begin{tabular}{ | l | p{10cm} |}
     \hline
@@ -86,11 +87,14 @@ Chaque sous-section ci-dessous contient une fiche descriptive et le diagramme de
     Démarrage & l'utilisateur appuie sur le bouton inscription \\ \hline
     Post-conditions & création d'un nouveau utilisateur \\ \hline
     \end{tabular}
+    \caption{Description textuelle de l'inscription}
 \end{center}
+\end{table}
 \fig{sequence_insc.png}{diagramme de séquence inscription}{0.4}
 % subsubsection inscription (end)
 
 \subsubsection{Terminer KYC} % (fold)
+\begin{table}[H]
 \begin{center}
     \begin{tabular}{ | l | p{10cm} |}
     \hline
@@ -101,11 +105,14 @@ Chaque sous-section ci-dessous contient une fiche descriptive et le diagramme de
     Démarrage & l'utilisateur clique sur le popup qui le notifie de vérifier son compte \\ \hline
     Post-conditions & vérification de l'utilisateur \\ \hline
     \end{tabular}
+    \caption{Description textuelle de terminer le KYC}
 \end{center}
+\end{table}
 \fig{sequence_kyc}{diagramme de séquence de validation du processus KYC}{0.9}
 % subsubsection processus_kyc (end)
 
 \subsubsection{Démarrer un trajet instantané} % (fold)
+\begin{table}[H]
 \begin{center}
     \begin{tabular}{ | l | p{10cm} |}
     \hline
@@ -116,13 +123,16 @@ Chaque sous-section ci-dessous contient une fiche descriptive et le diagramme de
     Démarrage & le conducteur rempli sa position d'arrivée \\ \hline
     Post-conditions & ajout de l'offre \\ \hline
     \end{tabular}
+    \caption{Description textuelle du démarrer un trajet instantané}
 \end{center}
+\end{table}
 \fig{sequence_conducteur.png}{diagramme de séquence démarrer un trajet instantané}{0.9}
 % subsubsection démarrer_un_covoiturage_instantané (end)
 
 \subsubsection{Demander un covoiturage instantané} % (fold)
+\begin{table}[H]
 \begin{center}
-    \begin{tabular}{ | l | p{10cm} |}
+    \begin{tabular}{ | l | p{10cm} | }
     \hline
     Titre & Demander un covoiturage instantané \\ \hline
     Acteur(s) & Passenger \\ \hline
@@ -131,24 +141,28 @@ Chaque sous-section ci-dessous contient une fiche descriptive et le diagramme de
     Démarrage & le passager rempli sa position d'arrivée \\ \hline
     Post-conditions & lancement de l'algorithme de matching \\ \hline
     \end{tabular}
+    \caption{Description textuelle du demander un covoiturage instantané}
 \end{center}
+\end{table}
 \fig{sequence_passager.png}{diagramme de séquence demander un covoiturage instantané}{0.9}
+
+\begin{tabular}{c}
+
+\end{tabular}
 % subsubsection demander_un_covoiturage_instantané (end)
 % subsection diagrammes_de_séquence (end)
 \subsection{Diagramme de classe d'analyse} % (fold)
-
-Pour identifier les éléments du domaine et les relations et interactions entre ces éléments, le diagramme de classe fournit une représentation des entités du système qui vont interagir pour réaliser les cas d'utilisation.\clearpage
-\fig{classe.png}{diagramme de classe métier}{0.8}
-Les classe Offre et Demande présentent sur le diagramme dépendent du covoiturage instantanée.\newline
-La classe Preference que je n'ai pas mentionné sur le diagramme représente les préférences soit du passager soit du conducteur dans les deux cas du covoiturage (planifié, instantané) et qui a comme attributs fumeur, sexe....\newline
+Pour identifier les éléments du domaine, les relations et interactions entre ces éléments, le diagramme de classe fournit une représentation des entités du système qui vont interagir pour réaliser les cas d'utilisation.
+\fig{classe.png}{diagramme de classe métier simplifié}{0.7}\newline
+Les classe Offre et Demande présentent sur le diagramme dépendent du covoiturage instantané. Et La classe Preference que je n'ai pas mentionné sur le diagramme représente les préférences soit du passager soit du conducteur dans les deux cas du covoiturage (planifié, instantané) et qui a comme attributs fumeur, sexe....\newline
 Les documents cités dans cette partie d'analyse sont le produit d'une première réflexion et ils ont été améliorés dans la phase du développement, donc ils ne vont pas servir comme moyens de documentation.
 % subsection diagramme_de_classe (end)
 \section{Aperçu de l'algorithme de covoiturage} % (fold)
 \label{sec:Aperçu de l'algorithme de covoiturage}
 \subsection{Étapes de l'algorithme} % (fold)
 Après la description formelle de nos besoins, on va décrire comment se déroule le processus de matching ou de jumelage qui est le cœur de notre métier.
-\figlabel{logigramme.png}{logigramme du processus de matching}{0.7}{logigramme}\newline
-La figure ~\ref{fig:logigramme} décrit étape par étape les différents taches. Notant que ce processus se répète trois fois, si aucune offre n'est trouvée on notifie le passager, dans ce cas il a la possibilité de relancer la recherche manuellement.
+\fig{logigramme.png}{logigramme du processus de matching}{0.7}\newline
+La figure \Figref{logigramme.png} décrit étape par étape les différents taches. Notant que ce processus se répète trois fois, si aucune offre n'est trouvée on notifie le passager, dans ce cas il a la possibilité de relancer la recherche manuellement.
 % subsection subsection_name (end)
 
 \subsection{Processus du matching} % (fold)
@@ -174,4 +188,4 @@ Dans le cas de plusieurs offres l'algorithme choisit le chauffeur en calculant u
 % subsection algorithme (end)
 % section conception (end)
 \paragraph{Conclusion} % (fold)
-Ce premier chapitre avait pour finalité l'identification et analyse des besoins, et la présentation de l'algorithme passons maintenant à l'implémentation.
+Ce deuxième chapitre avait pour finalité l'identification et analyse des besoins, et la présentation de l'algorithme passons maintenant à l'implémentation.

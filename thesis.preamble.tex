@@ -14,6 +14,8 @@ urlcolor= black, %couleur des hyperliens
 linkcolor= black, %couleur des liens internes
 citecolor=black %couleur des références %sous Acrobat.
 }
+\usepackage{float}
+\restylefloat{table}
 
 \input{blocked.sty}
 \input{uhead.sty}
@@ -113,24 +115,13 @@ citecolor=black %couleur des références %sous Acrobat.
 \newtheorem{definition}{Definition}[chapter]
 \newtheorem{theorem}{Theorem}[chapter]
 
-\newcommand{\Figref}[1]{Figure~\ref{#1}}
+\newcommand{\Figref}[1]{~\ref{#1}}
 \newcommand{\fig}[3]{
  \begin{figure}[!ht]
  \begin{center}
  \scalebox{#3}{\includegraphics{figs/#1}}
  \vspace{-0.1in}
- \caption{\label{#1} #2}
- \end{center}
- \end{figure}
-}
-
-\newcommand{\figlabel}[4]{
- \begin{figure}[!ht]
- \begin{center}
- \scalebox{#3}{\includegraphics{figs/#1}}
- \vspace{-0.1in}
- \caption{\label{#1} #2}
- \label{fig:#4}
+ \caption{\label{#1}#2}
  \end{center}
  \end{figure}
 }
@@ -141,7 +132,7 @@ citecolor=black %couleur des références %sous Acrobat.
  \begin{center}
  \scalebox{#3}{\includegraphics{figs/#1.ps}}
  \vspace{-0.1in}
- \caption{\label{#1}#2}
+ \caption{#2}
  \end{center}
  }
  \hfill
