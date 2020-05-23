@@ -1,13 +1,53 @@
-\chapter{Implementation}
+\chapter{Implémentation}
 
 % Containing a comprehensive description of the implementation of your software, including the language(s) and platform chosen, problems encountered, any changes made to the design as a result of the implementation, etc.
 \section{Architecture} % (fold)
 \label{sec:architecture}
-L’architecture globale de mise en œuvre est illustrée par la figure \Figref{architecture.png}. Cette architecture est subdivisé en 3 couches et repose sur l’utilisation des services Web a pour objectif d’assurer une flexibilité d’échange de services entre les différents composants du système.
-\fig{architecture.png}{architecture de l'application}{0.6}\newline\
-Par conséquent, Les 3 tiers de l’application vont être decrits comme suit :
-\clearpage
+\subsubsection{Architecture globale} % (fold)
+\label{ssub:architecture_globale}
+L’architecture globale de mise en œuvre est illustrée par la figure \Figref{architecture.png}. Cette architecture est subdivisée en 3 couches et repose sur l’utilisation des services Web, qui ont pour objectif d’assurer une flexibilité d’échange de services entre les différents composants du système.\newline
+Les différentes parties vont être décrits comme suit :
+\begin{enumerate}
+	\item Couche présentation : c'est notre application cliente dans notre cas mobile, qui tourne sur le système IOS ou Android et assure l'affichage et le dialogue avec l'utilisateur.
+	\item Coté serveur : assure le traitement métier des données et correspond à la mise en œuvre de l'ensemble des règles de gestion et de la logique applicative, cette partie contient deux principaux services Web : l'un gère les covoiturages instantané et l'autre planifié. Elle est hébergée sur le cloud Digital Ocean :
+	\begin{itemize}
+		\item Service de covoiturage instantané : il assure les demandes et offres de covoiturage temps réel en utilisant l'algorithme de matching. chaque fois qu'un passager lance une offre il est intercepté par ce service qui lance le processus du matching. 
+		\item Service de covoiturage planifié : il est responsable des demandes et offres de covoiturage planifié ou statique. il est sollicité chaque fois une offre ajouté ou à chaque demande de prise en charge d'un passager par un conducteur.
+	\end{itemize}
+	Nos API ou services sont conformes au standard REST (representational state transfer), donc la communication entre ses services est basée sur le protocole Http. Outre ils respectent des contraintes architecturales comme : La communication client–serveur s'effectue sans conservation de l'état de la session de communication sur le serveur entre deux requêtes successives.\cite{fielding2000architectural}
+	\item Base de données : Elle correspond à la partie gérant l'accès aux données de l'application, deux bases de données sont utilisées :
+	\begin{itemize}
+		\item MySql : les informations sur les utilisateurs, les offres planifiés où autres donnés qui ne changent pas souvent, résident sur cette base.
+		\item Firebase : les données comme les offres instantanée et les positions des conducteurs sont sollicités en lecture en temps réel, donc ils seront hébergés sur cette base.
+	\end{itemize}
+\end{enumerate}
+\fig{architecture.png}{architecture de l'application}{0.5}
+% subsubsection architecture_globale (end)
+\subsubsection{Architecture client side}
+\subsubsection{MVC} % (fold)
+ \label{ssub:mvc}
+ Commençons par définir ce que c'est que MVC. Le Model View Controller permet de diviser son programme en trois parties indépendantes :
+ \begin{itemize}
+ 	\item Le modèle : il contient la logique de l'application, il renferme nos entités qui sont des classes ou structures qui interagissent entre eux, et aussi les servies qui peuvent par exemple faire des appels réseau ou accéder à une base de données.
+ 	\item Le contrôleur : il récupère  et formate les informations du modèle pour les passer à la vue.
+ 	\item La vue : c'est ce que l'utilisateur voit, c'est l'interface de l'application.
+ \end{itemize}
+ Apple a choisi par défaut le très populaire patron de conception architectural MVC pour les applications iPhone. Cela veut dire que la façon dont ils ont conçu le développement d'application iPhone nous encourage à respecter le design MVC. \newline
+ MVC avant tout, est un ensemble de règles de communication :
+ \begin{itemize}
+ 	\item La vue et le modèle ne peuvent \textbf{JAMAIS} communiquer. chacun d'eux ignore l’existence de l'autre.
+ 	\item Le modèle peut parler indirectement au contrôleur par des notifications ou des fermetures (closures). C'est une communication aveugle, c'est à dire le modèle ne contient pas de référence du contrôleur.
+ 	\item La vue parle au contrôleur en lui délégant la gestion des interactions de l'utilisateur avec l'application, le contrôleur dans ce cas s'engage à répondre à sa demande comme montre la figure 
+ 	\fig{target_action.jpg}{le patron de conception target-action}{0.4}
+ \end{itemize}
+ La figure\Figref{mvc.png} résume ce qui a été dit dans cette partie.
+ \fig{mvc.png}{patron de conception mvc}{0.2}
+ % subsubsection mvc (end) 
 
+ \subsubsection{Difficultés rencontrées et pourquoi MVVM ?} % (fold)
+ \label{ssub:difficultés_rencontrées_et_pourquoi_mvvm_}
+ 
+ % subsubsection difficultés_rencontrées_et_pourquoi_mvvm_ (end)
 % section architecture (end)
 \section{Justification des choix techniques} % (fold){}
 \label{sec:justification_du_choix_technique}
