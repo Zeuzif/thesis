@@ -32,13 +32,13 @@ Les différentes parties vont être décrits comme suit :
  	\item Le contrôleur : il récupère  et formate les informations du modèle pour les passer à la vue.
  	\item La vue : c'est ce que l'utilisateur voit, c'est l'interface de l'application.
  \end{itemize}
- Apple a choisi par défaut le très populaire patron de conception architectural MVC pour les applications iPhone. Cela veut dire que la façon dont ils ont conçu le développement d'application iPhone nous encourage à respecter le design MVC. \newline
+ Apple a choisi par défaut le très populaire patron de conception architectural MVC pour les applications iPhone. Cela veut dire que la façon dont ils ont conçu le développement d'application iPhone nous encourage à respecter ce design. \newline
  MVC avant tout, est un ensemble de règles de communication :
  \begin{itemize}
  	\item La vue et le modèle ne peuvent \textbf{JAMAIS} communiquer. chacun d'eux ignore l’existence de l'autre.
  	\item Le modèle peut parler indirectement au contrôleur par des notifications ou des fermetures (closures). C'est une communication aveugle, c'est à dire le modèle ne contient pas de référence du contrôleur.
  	\item La vue parle au contrôleur en lui délégant la gestion des interactions de l'utilisateur avec l'application, le contrôleur dans ce cas s'engage à répondre à sa demande comme montre la figure 
- 	\fig{target_action.jpg}{le patron de conception target-action}{0.4}
+ 	\fig{target_action.jpg}{le patron de conception target-action}{0.4}\newline
  \end{itemize}
  La figure\Figref{mvc.png} résume ce qui a été dit dans cette partie.
  \fig{mvc.png}{patron de conception mvc}{0.2}
@@ -46,15 +46,24 @@ Les différentes parties vont être décrits comme suit :
 
  \subsubsection{Difficultés rencontrées et pourquoi MVVM ?} % (fold)
  \label{ssub:difficultés_rencontrées_et_pourquoi_mvvm_}
- 
+ Au fur et à mesure que notre application croît en taille et en portée, les problèmes complexes de maintenance commencent à surgir. Nous avons rencontré beaucoup de difficultés à tester nos contrôleurs et ce, même en essayant de les alléger et de déléguer beaucoup de fonctionnalités à des classes de services ou modèle. C'est ce qui nous a poussé à adopter une nouvelle structuration du code : le modèle MVVM.\cite{mvvm}\newline
+ MVVM vise à exporter les traitements de la logique de présentation dans des entités à part entière qui s'appellent les ViewModels, et qui seront placées entre la Vue/Contrôleur (qui désormais constitue une seule entité) et le modèle comme montre la figure\Figref{mvvm.png}.
+ \begin{itemize}
+ 	\item Le modèle : reste le même que celui de MVC.{}
+ 	\item La vue/contrôleur : cette couche représente le contexte de l'interface utilisateur et ses interactions. Désormais, nous considérons les vues et leurs contrôleurs MVC comme une seule entité.
+ 	\item Le View Model : le rôle qui incombe au ViewModel est de récupérer les données à partir du modèle et de les rendre disponibles à la vue sous une meilleure forme. De cette manière, on aura des contrôleurs beaucoup moins chargées qu'avant. On aurait allégé les tests UI puisqu'on a transformé une grande partie des contrôleurs en un modèle de données testable unitairement. 
+ \end{itemize}\
+ \fig{mvvm.png}{le patron de conception MVVM}{0.2}
  % subsubsection difficultés_rencontrées_et_pourquoi_mvvm_ (end)
 % section architecture (end)
-\section{Justification des choix techniques} % (fold){}
-\label{sec:justification_du_choix_technique}
-
-% section justification_du_choix_technique (end)
 
 \section{Technologies et outils utilisés} % (fold)
 \label{sec:technologies_et_outils_utilisés}
 
 % section technologies_et_outils_utilisés (end)
+
+\section{Justification des choix techniques} % (fold)
+\label{sec:justification_du_choix_technique}
+
+% section justification_du_choix_technique (end)
+
