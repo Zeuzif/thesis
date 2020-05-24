@@ -3,7 +3,7 @@
 % Containing a comprehensive description of the implementation of your software, including the language(s) and platform chosen, problems encountered, any changes made to the design as a result of the implementation, etc.
 \section{Architecture} % (fold)
 \label{sec:architecture}
-\subsubsection{Architecture globale} % (fold)
+\subsection{Architecture globale} % (fold)
 \label{ssub:architecture_globale}
 L’architecture globale de mise en œuvre est illustrée par la figure \Figref{architecture.png}. Cette architecture est subdivisée en 3 couches et repose sur l’utilisation des services Web, qui ont pour objectif d’assurer une flexibilité d’échange de services entre les différents composants du système.\newline
 Les différentes parties vont être décrits comme suit :
@@ -23,7 +23,7 @@ Les différentes parties vont être décrits comme suit :
 \end{enumerate}
 \fig{architecture.png}{architecture de l'application}{0.5}
 % subsubsection architecture_globale (end)
-\subsubsection{Architecture client side}
+\subsection{Architecture client side}
 \subsubsection{MVC} % (fold)
  \label{ssub:mvc}
  Commençons par définir ce que c'est que MVC. Le Model View Controller permet de diviser son programme en trois parties indépendantes :
@@ -44,22 +44,50 @@ Les différentes parties vont être décrits comme suit :
  \fig{mvc.png}{patron de conception mvc}{0.2}
  % subsubsection mvc (end) 
 
- \subsubsection{Difficultés rencontrées et pourquoi MVVM ?} % (fold)
+ \subsubsection{Difficultés rencontrées} % (fold)
  \label{ssub:difficultés_rencontrées_et_pourquoi_mvvm_}
  Au fur et à mesure que notre application croît en taille et en portée, les problèmes complexes de maintenance commencent à surgir. Nous avons rencontré beaucoup de difficultés à tester nos contrôleurs et ce, même en essayant de les alléger et de déléguer beaucoup de fonctionnalités à des classes de services ou modèle. C'est ce qui nous a poussé à adopter une nouvelle structuration du code : le modèle MVVM.\cite{mvvm}\newline
  MVVM vise à exporter les traitements de la logique de présentation dans des entités à part entière qui s'appellent les ViewModels, et qui seront placées entre la Vue/Contrôleur (qui désormais constitue une seule entité) et le modèle comme montre la figure\Figref{mvvm.png}.
  \begin{itemize}
- 	\item Le modèle : reste le même que celui de MVC.{}
+ 	\item Le modèle : reste le même que celui de MVC.
  	\item La vue/contrôleur : cette couche représente le contexte de l'interface utilisateur et ses interactions. Désormais, nous considérons les vues et leurs contrôleurs MVC comme une seule entité.
  	\item Le View Model : le rôle qui incombe au ViewModel est de récupérer les données à partir du modèle et de les rendre disponibles à la vue sous une meilleure forme. De cette manière, on aura des contrôleurs beaucoup moins chargées qu'avant. On aurait allégé les tests UI puisqu'on a transformé une grande partie des contrôleurs en un modèle de données testable unitairement. 
  \end{itemize}\
  \fig{mvvm.png}{le patron de conception MVVM}{0.2}
+ Puisque je me suis penché plus sur le développement de l'application partie cliente sur ios, je vais me limiter à décrire les outils utilisés dans cette couche par la suite.
  % subsubsection difficultés_rencontrées_et_pourquoi_mvvm_ (end)
 % section architecture (end)
 
-\section{Technologies et outils utilisés} % (fold)
+\section{Technologies utilisés} % (fold)
 \label{sec:technologies_et_outils_utilisés}
+\subsubsection{Langages} % (fold)
+\label{ssub:lanages}
+\begin{itemize}
+	\itemb \textbf{Objective-C} : C'est une extension du C ANSI, comme le C++, mais qui se distingue de ce dernier par sa distribution dynamique des messages, son typage faible ou fort, son typage dynamique et son chargement dynamique. il est principalement utilisé dans les systèmes d'exploitation d'Apple.
+	\itemb \textbf{Swift} : un langage de programmation objet compilé, multi-paradigmes, ayant pour objectif d'être simple, hautes performances et sûr. Il est développé en open source.
+\end{itemize}
+% subsubsection lanages (end)
 
+\subsubsection{Frameworks} % (fold)
+\label{ssub:subsubsection_name}
+\begin{itemize}
+	\itemb \textbf{Cocoa Touch} : il fournit l'infrastructure requise pour les applications iOS ou tvOS. Il fournit l'architecture de fenêtre et de vue pour implémenter l'interface, l'infrastructure de gestion des événements pour fournir Multi-Touch et d'autres types d'entrée à l'application.
+	il regroupe deux autres frameworks qui sont Foundation c'est la base comme son nom l'indique, et UIKit
+	qui permet de créer des interfaces graphiques.
+	\itemb \textbf{Core Data} : c'est un framework qui permet de faire persister les données en local (sur l'iphone), il fournit l’accès a une base de donnée standard (souvent SQLite) et une API orientée objet c'est à dire un ORM (Object Relational Mapping).
+	\itemb \textbf{Here} : il permet aux applications clientes d'utiliser les données de cartographie comme colonne vertébrale pour leurs applications mobiles, et aussi d'accéder à des informations telles que les vitesses moyennes sur route, l'accroissement du trafic et les charges maximales pouvant être transportées sur une route particulière
+	\itemb \textbf{Firebase} : un BaaS (Back-as-a-a-Service) qui permettra de stocker et de synchroniser les données sur tous vos clients en temps réel. Chaque fois que les données changent, Firebase met à jour les applications sur chaque appareil (mobile ou Web). Si votre application Firebase fonctionne hors ligne, ses données seront synchronisées une fois la connectivité rétablie.\newline
+	le SDK pour (Software Developement Kit) de Firebase regroupe tous les API et il est facile a intégrer dans l'application.
+\end{itemize}
+% subsubsection subsubsection_name (end)
+
+\subsubsection{Outils} % (fold)
+\label{ssub:outils}
+\begin{itemize}
+	\itemb \textbf{Xcode} : un environnement de développement (IDE) pour macOS, Fournit toute une suite logicielle (graphiques, audio, etc.) pour développeurs et programmeurs. Il permet de créer des logiciels pour iOS, watchOS et tvOS.
+	\itemb \textbf{CocoaPods} : un gestionnaire de dépendances au niveau de l'application pour Objective-C, Swift et toutes les autres langues qui s'exécutent sur l'environnement d'exécution Objective-C, comme RubyMotion, et qui fournit un format standard pour la gestion des bibliothèques externes. il permet d'automatiser l’intégration des autres frameworks dans un projet.
+	\itemb \textbf{Postman} : un outil qui permet d'interroger et tester les webservices et API, il propose de nombreuses fonctionnalités, une prise en main rapide et une interface graphique agréable.
+% subsubsection outils (end)
 % section technologies_et_outils_utilisés (end)
 
 \section{Justification des choix techniques} % (fold)
