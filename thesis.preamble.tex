@@ -3,8 +3,9 @@
 \usepackage{latexsym}
 \usepackage{mathchars}
 \usepackage{setspace}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[french]{babel}  % langue
+\usepackage[french]{babel}  % langues
 \usepackage[toc]{appendix}
 \usepackage{hyperref}
 \hypersetup{
@@ -17,10 +18,13 @@ citecolor=black %couleur des références %sous Acrobat.
 \usepackage{float}
 \restylefloat{table}
 
+
 \input{blocked.sty}
 \input{uhead.sty}
 \input{boxit.sty}
 \input{thesis.sty}
+
+\newenvironment{bottompar}{\par\vspace*{\fill}}{\clearpage}
 
 \newcommand{\ipc}{{\sf ipc}}
 

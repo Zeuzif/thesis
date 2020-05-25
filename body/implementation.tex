@@ -52,7 +52,7 @@ Les différentes parties vont être décrits comme suit :
  	\item Le modèle : reste le même que celui de MVC.
  	\item La vue/contrôleur : cette couche représente le contexte de l'interface utilisateur et ses interactions. Désormais, nous considérons les vues et leurs contrôleurs MVC comme une seule entité.
  	\item Le View Model : le rôle qui incombe au ViewModel est de récupérer les données à partir du modèle et de les rendre disponibles à la vue sous une meilleure forme. De cette manière, on aura des contrôleurs beaucoup moins chargées qu'avant. On aurait allégé les tests UI puisqu'on a transformé une grande partie des contrôleurs en un modèle de données testable unitairement. 
- \end{itemize}\
+ \end{itemize}
  \fig{mvvm.png}{le patron de conception MVVM}{0.2}
  Puisque je me suis penché plus sur le développement de l'application partie cliente sur ios, je vais me limiter à décrire les outils utilisés dans cette couche par la suite.
  % subsubsection difficultés_rencontrées_et_pourquoi_mvvm_ (end)
@@ -87,6 +87,7 @@ Les différentes parties vont être décrits comme suit :
 	\itemb \textbf{Xcode} : un environnement de développement (IDE) pour macOS, Fournit toute une suite logicielle (graphiques, audio, etc.) pour développeurs et programmeurs. Il permet de créer des logiciels pour iOS, watchOS et tvOS.
 	\itemb \textbf{CocoaPods} : un gestionnaire de dépendances au niveau de l'application pour Objective-C, Swift et toutes les autres langues qui s'exécutent sur l'environnement d'exécution Objective-C, comme RubyMotion, et qui fournit un format standard pour la gestion des bibliothèques externes. il permet d'automatiser l’intégration des autres frameworks dans un projet.
 	\itemb \textbf{Postman} : un outil qui permet d'interroger et tester les webservices et API, il propose de nombreuses fonctionnalités, une prise en main rapide et une interface graphique agréable.
+\end{itemize}
 % subsubsection outils (end)
 % section technologies_et_outils_utilisés (end)
 

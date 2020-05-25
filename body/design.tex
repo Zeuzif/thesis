@@ -151,12 +151,21 @@ Chaque sous-section ci-dessous contient une fiche descriptive et le diagramme de
 \end{tabular}
 % subsubsection demander_un_covoiturage_instantané (end)
 % subsection diagrammes_de_séquence (end)
+
+\subsection{IHM} % (fold)
+\label{sub:ihm}
+À base de l'analyse métier faite, nous avons essayer d’édifier des prototypes d'interfaces graphiques qui nous sert de guide lors de la phase du développement.\newline
+les maquettes ont été réalisées en Adobe XD qui permet aux designers de modifier et partager facilement des prototypes interactifs avec collaborateurs et réviseurs et qui est disponible sur l'ensemble des appareils et plates-formes, dont Windows, Mac, iOS et Android.
+\fig{templates.png}{prototypes d'interfaces graphiques}{0.3}
+% subsection ihm (end)
+
 \subsection{Diagramme de classe d'analyse} % (fold)
-Pour identifier les éléments du domaine, les relations et interactions entre ces éléments, le diagramme de classe fournit une représentation des entités du système qui vont interagir pour réaliser les cas d'utilisation.
-\fig{classe.png}{diagramme de classe métier simplifié}{0.7}\newline
+Pour identifier les éléments du domaine, les relations et interactions entre ces éléments, le diagramme de classe fournit une représentation des entités du système qui vont interagir pour réaliser les cas d'utilisation.\newline
 Les classe Offre et Demande présentent sur le diagramme dépendent du covoiturage instantané. Et La classe Preference que je n'ai pas mentionné sur le diagramme représente les préférences soit du passager soit du conducteur dans les deux cas du covoiturage (planifié, instantané) et qui a comme attributs fumeur, sexe....\newline
 Les documents cités dans cette partie d'analyse sont le produit d'une première réflexion et ils ont été améliorés dans la phase du développement, donc ils ne vont pas servir comme moyens de documentation.
+\fig{classe.png}{diagramme de classe métier simplifié}{0.8}
 % subsection diagramme_de_classe (end)
+
 \section{Aperçu de l'algorithme de covoiturage} % (fold)
 \label{sec:Aperçu de l'algorithme de covoiturage}
 \subsection{Étapes de l'algorithme} % (fold)
@@ -184,8 +193,7 @@ Deuxièmement, on va vérifier que le point d'arrivée du passager est sur le ch
 \label{eqution2}
 \end{equation}
 Dans le cas de plusieurs offres l'algorithme choisit le chauffeur en calculant un score qui se détermine par la convenance des préférences du chauffeur et le passager (fumeur, bagages, sexe...). Et par le temps de détour des deux offres, par détour on apprend le temps qui va mettre le chauffeur pour prendre en charge le passager.
-\fig{matching.png}{processus de matching dans le cas d'une seule offre}{0.7}
+\fig{matching.png}{processus de matching dans le cas d'une seule offre}{0.7}\newline
 % subsection algorithme (end)
 % section conception (end)
-\paragraph{Conclusion} % (fold)
-Ce deuxième chapitre avait pour finalité l'identification et analyse des besoins, et la présentation de l'algorithme passons maintenant à l'implémentation.
+\paragraph{Conclusion.} Ce deuxième chapitre avait pour finalité l'identification et analyse des besoins, et la présentation de l'algorithme passons maintenant à l'implémentation.
