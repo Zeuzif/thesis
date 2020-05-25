@@ -32,7 +32,7 @@ Les différentes parties vont être décrits comme suit :
  	\item Le contrôleur : il récupère  et formate les informations du modèle pour les passer à la vue.
  	\item La vue : c'est ce que l'utilisateur voit, c'est l'interface de l'application.
  \end{itemize}
- Apple a choisi par défaut le très populaire patron de conception architectural MVC pour les applications iPhone. Cela veut dire que la façon dont ils ont conçu le développement d'application iPhone nous encourage à respecter ce design. \newline
+ Apple a choisi par défaut le très populaire patron de conception architectural MVC pour les applications iPhone\cite{mvc}. Cela veut dire que la façon dont ils ont conçu le développement d'application iPhone nous encourage à respecter ce design. \newline
  MVC avant tout, est un ensemble de règles de communication :
  \begin{itemize}
  	\item La vue et le modèle ne peuvent \textbf{JAMAIS} communiquer. chacun d'eux ignore l’existence de l'autre.
@@ -51,14 +51,14 @@ Les différentes parties vont être décrits comme suit :
  \begin{itemize}
  	\item Le modèle : reste le même que celui de MVC.
  	\item La vue/contrôleur : cette couche représente le contexte de l'interface utilisateur et ses interactions. Désormais, nous considérons les vues et leurs contrôleurs MVC comme une seule entité.
- 	\item Le View Model : le rôle qui incombe au ViewModel est de récupérer les données à partir du modèle et de les rendre disponibles à la vue sous une meilleure forme. De cette manière, on aura des contrôleurs beaucoup moins chargées qu'avant. On aurait allégé les tests UI puisqu'on a transformé une grande partie des contrôleurs en un modèle de données testable unitairement. 
+ 	\item Le View Model : le rôle qui incombe au ViewModel est de récupérer les données à partir du modèle et de les rendre disponibles à la vue sous une meilleure forme. De cette manière, on aura des contrôleurs beaucoup moins chargées qu'avant. On aurait allégé les tests UI puisqu'on a transformé une grande partie des contrôleurs en un modèle de données testable unitairement.\clearpage
  \end{itemize}
  \fig{mvvm.png}{le patron de conception MVVM}{0.2}
- Puisque je me suis penché plus sur le développement de l'application partie cliente sur ios, je vais me limiter à décrire les outils utilisés dans cette couche par la suite.
+ Puisque je me suis penché plus sur le développement de l'application partie cliente sur ios, je vais me limiter à décrire les outils utilisés dans cette partie par la suite.
  % subsubsection difficultés_rencontrées_et_pourquoi_mvvm_ (end)
 % section architecture (end)
 
-\section{Technologies utilisés} % (fold)
+\section{Technologies utilisées} % (fold)
 \label{sec:technologies_et_outils_utilisés}
 \subsubsection{Langages} % (fold)
 \label{ssub:lanages}
@@ -93,6 +93,63 @@ Les différentes parties vont être décrits comme suit :
 
 \section{Justification des choix techniques} % (fold)
 \label{sec:justification_du_choix_technique}
+\subsection{partie cliente} % (fold)
+\label{sub:partie_cliente}
+\subsubsection{Applications natives} % (fold)
+\label{ssub:application_native}
+\begin{itemize}
+	\item Notre application a besoin d’accéder rapidement à toutes les fonctionnalités du téléphone, du gps en passant par la caméra et le micro.
+	\item Les notifications push, uniquement disponibles sur les apps natives occupent une place centrale dans notre app. ils permettent d’alerter les passagers sur l'état de leurs offres ainsi que la position du conducteur en cas de prise en charge. Et au conducteur de recevoir des demandes.
+	\item le budget dédié au développement couvre les charges de ces dernières.
+\end{itemize}
+% subsubsection application_native (end)
 
+\subsubsection{Here} % (fold)
+\label{ssub:here}
+Dans ce cas le choix sur le prix que propose différents fournisseurs de service de cartographie.\newline
+Google a augmenté ses prix de 1400\%. et a limité sa version gratuite. C'est pourquoi ICI (Here) est beaucoup plus attrayant que Google, car nous pouvons utiliser le modèle fremium et utiliser 250 000 appels API par jour. Versus 28.000 de Google.\newline
+La figure ci-dessous compare les deux fournisseurs en termes de prix.\cite{heremaps}
+\fig{here.png}{HERE Maps API vs Google Maps API}{0.5}
+% subsubsection here (end)
+% subsection partie_cliente (end)
+
+\subsection{Partie serveur} % (fold)
+\label{sub:partie_serveur}
+
+\subsubsection{API Rest} % (fold)
+\label{ssub:api_rest}
+Comme il a été dit dans la partie spécification des besoins notre application devrait être portable et extensible. les services web REST permet au mieux de répondre à ses exigences et sont plus faciles à implémenter, comparés aux méthodes du type RPC Remote Procedure Call comme SOAP.
+% subsubsection api_rest (end)
+\subsubsection{Digital Ocean} % (fold)
+\label{ssub:digital_ocean}
+Puisque notre utilisation du cloud se limite à louer une capacité de calcul et donc pas aux service. on a besoin d'un fournisseur cloud qui gère le matériel serveur, les couches de virtualisation, le stockage, les réseaux)\newline
+Digital Ocean  présente une solution qui répond bien à notre besoin d'héberger notre application à moindre coût.\cite{digitalocean}
+\fig{digitalocean.png}{Performances CPU par dollar de toutes les machines virtuelles testées}{0.5}
+% subsubsection digital_ocean (end)
+% subsection partie_serveur (end)
+
+\subsection{Choix du système de gestion de données} % (fold)
+\label{sub:partie_base_de_données}
+\subsubsection{Mysql} % (fold)
+\label{ssub:le_choix_de_mysql}
+\begin{itemize}
+	\item Le projet MySQL a rendu son code source disponible sous les termes de la GNU General Public License, donc il représente une solution a moindre coût, l'autre avantage est qu'il y a une grande communauté derrière, par conséquent, nous pouvons facilement apprendre et dépanner MySQL à partir de différentes sources comme des blogs, des livres blancs et des livres.
+	\item Nous avons pas de données sur le nombre d'utilisateur à venir, donc la mise à l'échelle et la réplication sont des fonctions primordiales et notre SGBD les prennent  en charge.
+	\item Les transactions sont simples, les données sur le covoiturage planifié sont le plus souvent demandées en lecture, donc les performances de mysql sont largement suffisantes.
+\end{itemize}
+% subsubsection le_choix_de_mysql (end)
+
+\subsubsection{Firebase} % (fold)
+\label{ssub:firebase}
+\begin{itemize}
+	\item Dans le cas des données sur le covoiturage dynamique (offres, demandes, position des conducteurs...), l’écriture et la lecture en temps réel est le premier facteur à prendre en compte. la raison derrière le choix est que Firebase est essentiellement un service cloud fourni par Google, il fonctionne donc mieux que les autres serveurs et fournisseurs de services backend. (une étude détaillée nous manquait)
+	\item Vu la contrainte temporelle: 4 mois pour développer l'application. Firebase économise beaucoup de temps puisque il offre un ensemble de services prêts à l'emploi, cela veut dire qu'il n'est pas seulement un système de gestion de données mais un logiciel en tant que service SaaS.
+	\item En mode développement la plateforme est gratuite.
+	\item Firebase c'est tout un eco-systeme donc nous pouvons intégrer gratuitement des services comme Google Analytics qui nous aide à comprendre comment les gens utilisent notre application. L'outil capture automatiquement un certain nombre d'événements et de propriétés utilisateur et permet également de définir nos propres événements personnalisés pour mesurer les éléments qui importent à l'entreprise. 
+\end{itemize}
+% subsubsection firebase (end)
+% subsection partie_base_de_données (end)
 % section justification_du_choix_technique (end)
+
+\section{Quelques interfaces utilisateur}
 
