@@ -7,6 +7,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}  % langues
 \usepackage[toc]{appendix}
+
 \usepackage{hyperref}
 \hypersetup{
 colorlinks=true, %colorise les liens
@@ -15,9 +16,19 @@ urlcolor= black, %couleur des hyperliens
 linkcolor= black, %couleur des liens internes
 citecolor=black %couleur des références %sous Acrobat.
 }
+
 \usepackage{float}
 \restylefloat{table}
 \usepackage{subfig}
+
+\usepackage[french]{nomencl}
+\makenomenclature 
+\renewcommand{\nomname}{Liste des abréviations}
+
+\usepackage{arabtex}
+\usepackage{utf8}
+% \setstretch{1.3}
+\setcode{utf8}
 
 
 \input{blocked.sty}
