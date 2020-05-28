@@ -1,6 +1,7 @@
 \chapter{Implémentation}
 
 % Containing a comprehensive description of the implementation of your software, including the language(s) and platform chosen, problems encountered, any changes made to the design as a result of the implementation, etc.
+Ce chapitre donne quelques éclaircissements quant à l'architecture soit globale soit celle de l'application mobile tout en mettant le doigt sur les problèmes rencontrés, ensuite il liste les différentes technologies utilisées, enfin il justifie nos choix techniques.
 \section{Architecture} % (fold)
 \label{sec:architecture}
 \subsection{Architecture globale} % (fold)
@@ -51,7 +52,7 @@ Les différentes parties vont être décrits comme suit :
  \begin{itemize}
  	\item Le modèle : reste le même que celui de MVC.
  	\item La vue/contrôleur : cette couche représente le contexte de l'interface utilisateur et ses interactions. Désormais, nous considérons les vues et leurs contrôleurs MVC comme une seule entité.
- 	\item Le View Model : le rôle qui incombe au ViewModel est de récupérer les données à partir du modèle et de les rendre disponibles à la vue sous une meilleure forme. De cette manière, on aura des contrôleurs beaucoup moins chargées qu'avant. On aurait allégé les tests UI puisqu'on a transformé une grande partie des contrôleurs en un modèle de données testable unitairement.\clearpage
+ 	\item Le View Model : le rôle qui incombe au ViewModel est de récupérer les données à partir du modèle et de les rendre disponibles à la vue sous une meilleure forme. De cette manière, on aura des contrôleurs beaucoup moins chargées qu'avant. On aurait allégé les tests UI puisqu'on a transformé une grande partie des contrôleurs en un modèle de données testable unitairement.
  \end{itemize}
  \fig{mvvm.png}{le patron de conception MVVM}{0.2}
  Puisque je me suis penché plus sur le développement de l'application partie cliente sur ios, je vais me limiter à décrire les outils utilisés dans cette partie par la suite.
@@ -150,6 +151,42 @@ Digital Ocean  présente une solution qui répond bien à notre besoin d'héberg
 % subsubsection firebase (end)
 % subsection partie_base_de_données (end)
 % section justification_du_choix_technique (end)
-
 \section{Quelques interfaces utilisateur}
+Cette section présente quelques interfaces utilisateur.
+\begin{figure}%
+    \centering
+    \subfloat[L’accueil]{{\includegraphics[width=7cm]{figs/ui1.png} }}%
+    \qquad
+    \subfloat[Ajouter offre planifiée]{{\includegraphics[width=7cm]{figs/ui2.png} }}%
+    \caption{Les offres planifiés}%
+    % \label{fig:example}%
+\end{figure}
+\clearpage
+\begin{figure}%
+    \centering
+    \subfloat[Conducteur]{{\includegraphics[width=7cm]{figs/ui3.png} }}%
+    \qquad
+    \subfloat[Passager]{{\includegraphics[width=7cm]{figs/ui4.png} }}%
+    \caption{Les offres instantanés}%
+    % \label{fig:example}%
+\end{figure}
+\clearpage
+\begin{figure}%
+    \centering
+    \subfloat[Authentification]{{\includegraphics[width=7cm]{figs/ui6.png} }}%
+    \qquad
+    \subfloat[Profil]{{\includegraphics[width=7cm]{figs/ui5.png} }}%
+    \caption{Utilisateur}%
+    % \label{fig:example}%
+\end{figure}
+\clearpage
+\begin{figure}%
+    \centering
+    \subfloat[Informations personnelles]{{\includegraphics[width=7cm]{figs/ui7.png} }}%
+    \qquad
+    \subfloat[Vérification du téléphone]{{\includegraphics[width=7cm]{figs/ui8.png} }}%
+    \caption{L'inscription}%
+    % \label{fig:example}%
+\end{figure}
+\paragraph{Conclusion.} Ce troisième chapitre avait pour finalité de donner une vue d'ensemble sur l'architecture, les technologies et le choix technique.
 
