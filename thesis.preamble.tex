@@ -21,9 +21,11 @@ citecolor=black %couleur des références %sous Acrobat.
 \restylefloat{table}
 \usepackage{subfig}
 
+\usepackage{helvet}
 \usepackage[french]{nomencl}
 \makenomenclature
 \renewcommand{\nomname}{Liste d’abréviations}
+\renewcommand{\nomlabel}[1]{{\fontfamily{phv}\selectfont \textbf{#1}}}
 
 \usepackage{arabtex}
 \usepackage{utf8}
