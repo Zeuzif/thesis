@@ -36,10 +36,24 @@ Les tests ont pour but de :
 
 \section{Outils de tests} % (fold)
 \label{sub:outils_de_tests}
-
+Afin de parvenir à dénicher les bugs et à écrire un code qui gagnera en robustesse nous avons utilisées un ensemble d'outils cités ci-dessous : 
+\begin{itemize}
+	\itemb \textbf{LLDB}\nomenclature{LLDB}{Low Level Debugger.} : un débogueur haute performance de nouvelle génération. Il est construit comme un ensemble de composants réutilisables qui exploitent fortement les bibliothèques existantes dans le plus grand projet LLVM, comme l'analyseur d'expression Clang et le désassembleur LLVM.
+	\itemb \textbf{XCTest} : framework qui permet de créez et exécutez des tests unitaires, des tests de performances et des tests d'interface utilisateur pour un projet Xcode.
+	\itemb \textbf{Couverture du code} (Code coverage) : indique quel pourcentage du code testé a été exécuté lors du lancement des tests unitaires correspondants. Xcode 7 a introduit une fonctionnalité de couverture du code.
+	\itemb \textbf{SwiftLint} : un outil créée et maintenu par Realm pour améliorer le respect des conventions d’écritures en Swift, c'est à dire il fait une analyse statique du code.
+\end{itemize}
 % subsection outils_de_tests (end)
 
-\section{Tests} % (fold)
+\section{Les types de test} % (fold)
 \label{sub:tests}
+Dans notre application nous avons eu recours à deux types de tests :
+\begin{itemize}
+	\item Tests manuelles : conduit par les membres de l'équipe et sont destinés pour tester les interfaces utilisateurs, dans notre cas ils remplaces les tests fonctionnels.
+	\item Tests unitaires : destinés à tester chaque bout de code et sont automatisés par XCTest.
+\end{itemize}
+% subsection tests (end)
 
-% subsection tests (end){}
+\section{Évaluation} % (fold)
+Pour évaluer les performances de notre application, nous avons utilisé Xcode Instruments qui regroupe une collection d'outils pour profiler le comportement d'exécution de l’application. Par exemple, le Time Profiler est un excellent outil pour mesurer les performances et analyser le temps d'exécution des différents threads ou fil d’exécution.
+\fig{profiler.png}{Xcode Instruments}{0.5}
