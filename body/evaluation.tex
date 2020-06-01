@@ -1,3 +1,45 @@
 \chapter{Tests et évaluation}
 
 % Explaining how your software was tested (using different datasets or in different environments), statistical evaluation of performance, results of user evaluation questionnaires, etc.
+\section{Code testable} % (fold)
+\label{sub:code_testable}
+Avant même d'écrire des tests, il faut préparer son code a être testable. Synonyme de respecter un ensemble de principes dans le développement.\newline
+Cette section présente quelques principes qui nous ont aidé à écrire du code facilement testable, mais pas seulement testable, mais plus facile à gérer et plus flexible en raison de sa meilleur modularité.\newline
+Pour parvenir à écrire un code plus robuste, nous avons été amenés à suivre les cinq principes SOLID \cite{solid}introduits par Robert C. Martin.\cite{martin2002agile}
+\begin{itemize}
+	\itemb \textbf{Responsabilité unique} (Single responsibility principle)
+	une classe, une fonction ou une méthode doit avoir une et une seule responsabilité.
+	\itemb \textbf{Ouvert/fermé} (Open/closed principle)
+	une entité applicative (class, fonction, module ...) doit être ouverte à l'extension, mais fermée à la modification.
+	\itemb \textbf{Substitution de Liskov} (Liskov substitution principle)
+	une instance de type T doit pouvoir être remplacée par une instance de type G, tel que G sous-type de T,
+	sans que cela ne modifie la cohérence du programme
+	\itemb \textbf{Ségrégation des interfaces} (Interface segregation principle)
+	préférer plusieurs interfaces spécifiques pour chaque client plutôt qu'une seule interface générale
+	\itemb \textbf{Inversion des dépendances} (Dependency inversion principle)
+	il faut dépendre des abstractions, pas des implémentations
+\end{itemize}
+En plus, comme on a dit dans le chapitre précédent, nous avons adopté dans certaines parties de l'application une architecture MVVM au lieu de MVC pour que nos tests couvrent une grande partie de notre code.
+% subsection code_testable (end)
+
+\section{Intérêts des tests} % (fold)
+\label{sub:pourquoi_tester_}
+Dans cette section nous allons répondre à la question, pourquoi écrire des tests?\newline
+Les tests ont pour but de :
+\begin{itemize}
+	\item Montrer que notre code fonctionne :  si un changement casse quelque chose, un ou plusieurs des tests vont échouer.
+	\item prévenir les bugs et les régressions : tout défaut introduit dans application à l'occasion de l'ajout de nouvelles fonctionnalités, modification de fonctionnalités existantes ou modification d'un composant externe au logiciel lui-même sera signalé par des tests qui vont échouer.
+	\item penser les classes : comme on a vu dans la première section, il faut dépendre des abstractions, pas des implémentations. Donc écrire des tests incite à créer des classes dont les responsabilités sont uniques et indépendantes.
+	\item offrir une documentation du code : chaque test va couvrir un cas d'usage d'une des classes. Donc si tout le code est testé, les tests sont une vraie documentation fonctionnelle du programme
+\end{itemize} 
+% subsection pourquoi_tester_ (end)
+
+\section{Outils de tests} % (fold)
+\label{sub:outils_de_tests}
+
+% subsection outils_de_tests (end)
+
+\section{Tests} % (fold)
+\label{sub:tests}
+
+% subsection tests (end){}
