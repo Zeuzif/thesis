@@ -3,14 +3,14 @@
 % Explaining how your software was tested (using different datasets or in different environments), statistical evaluation of performance, results of user evaluation questionnaires, etc.
 \section{Code testable} % (fold)
 \label{sub:code_testable}
-Avant même d'écrire des tests, il faut préparer son code a être testable. Synonyme de respecter un ensemble de principes dans le développement.\newline
-Cette section présente quelques principes qui nous ont aidé à écrire du code facilement testable, mais pas seulement testable, mais plus facile à gérer et plus flexible en raison de sa meilleur modularité.\newline
+Avant même d'écrire des tests, il faut préparer son code à être testable. Synonyme de respecter un ensemble de principes dans le développement.\newline
+Cette section présente quelques principes qui nous ont aidé à écrire du code facilement testable, mais pas seulement testable, mais plus facile à gérer et plus flexible en raison de sa meilleure modularité.\newline
 Pour parvenir à écrire un code plus robuste, nous avons été amenés à suivre les cinq principes SOLID \cite{solid}introduits par Robert C. Martin.\cite{martin2002agile}
 \begin{itemize}
 	\itemb \textbf{Responsabilité unique} (Single responsibility principle)
 	une classe, une fonction ou une méthode doit avoir une et une seule responsabilité.
 	\itemb \textbf{Ouvert/fermé} (Open/closed principle)
-	une entité applicative (class, fonction, module ...) doit être ouverte à l'extension, mais fermée à la modification.
+	une entité applicative (classe, fonction, module ...) doit être ouverte à l'extension, mais fermée à la modification.
 	\itemb \textbf{Substitution de Liskov} (Liskov substitution principle)
 	une instance de type T doit pouvoir être remplacée par une instance de type G, tel que G sous-type de T,
 	sans que cela ne modifie la cohérence du programme
@@ -39,7 +39,7 @@ Les tests ont pour but de :
 Afin de parvenir à dénicher les bugs et à écrire un code qui gagnera en robustesse nous avons utilisées un ensemble d'outils cités ci-dessous : 
 \begin{itemize}
 	\itemb \textbf{LLDB}\nomenclature{LLDB}{Low Level Debugger.} : un débogueur haute performance de nouvelle génération. Il est construit comme un ensemble de composants réutilisables qui exploitent fortement les bibliothèques existantes dans le plus grand projet LLVM, comme l'analyseur d'expression Clang et le désassembleur LLVM.
-	\itemb \textbf{XCTest} : framework qui permet de créez et exécutez des tests unitaires, des tests de performances et des tests d'interface utilisateur pour un projet Xcode.
+	\itemb \textbf{XCTest} : framework qui permet de créer et exécuter des tests unitaires, des tests de performances et des tests d'interface utilisateur pour un projet Xcode.
 	\itemb \textbf{Couverture du code} (Code coverage) : indique quel pourcentage du code testé a été exécuté lors du lancement des tests unitaires correspondants. Xcode 7 a introduit une fonctionnalité de couverture du code.
 	\itemb \textbf{SwiftLint} : un outil créée et maintenu par Realm pour améliorer le respect des conventions d’écritures en Swift, c'est à dire il fait une analyse statique du code.
 \end{itemize}
@@ -49,7 +49,7 @@ Afin de parvenir à dénicher les bugs et à écrire un code qui gagnera en robu
 \label{sub:tests}
 Dans notre application nous avons eu recours à deux types de tests :
 \begin{itemize}
-	\item Tests manuelles : conduit par les membres de l'équipe et sont destinés pour tester les interfaces utilisateurs, dans notre cas ils remplaces les tests fonctionnels.
+	\item Tests manuels : conduit par les membres de l'équipe et sont destinés pour tester les interfaces utilisateurs, dans notre cas ils remplacent les tests fonctionnels.
 	\item Tests unitaires : destinés à tester chaque bout de code et sont automatisés par XCTest.
 \end{itemize}
 % subsection tests (end)

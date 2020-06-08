@@ -75,7 +75,7 @@ Les différentes parties vont être décrits comme suit :
 	\itemb \textbf{Cocoa Touch} : il fournit l'infrastructure requise pour les applications iOS ou tvOS. Il fournit l'architecture de fenêtre et de vue pour implémenter l'interface, l'infrastructure de gestion des événements pour fournir Multi-Touch et d'autres types d'entrée à l'application.
 	il regroupe deux autres frameworks qui sont Foundation c'est la base comme son nom l'indique, et UIKit
 	qui permet de créer des interfaces graphiques.
-	\itemb \textbf{Core Data} : c'est un framework qui permet de faire persister les données en local (sur l'iphone), il fournit l’accès a une base de donnée standard (souvent SQLite) et une API orientée objet c'est à dire un ORM (Object Relational Mapping).
+	\itemb \textbf{Core Data} : c'est un framework qui permet de faire persister les données en local (sur l'iphone), il fournit l’accès à une base de donnée standard (souvent SQLite) et une API orientée objet c'est à dire un ORM (Object Relational Mapping).
 	\itemb \textbf{Here} : il permet aux applications clientes d'utiliser les données de cartographie comme colonne vertébrale pour leurs applications mobiles, et aussi d'accéder à des informations telles que les vitesses moyennes sur route, l'accroissement du trafic et les charges maximales pouvant être transportées sur une route particulière
 	\itemb \textbf{Firebase} : un BaaS (Back-as-a-a-Service) qui permettra de stocker et de synchroniser les données sur tous vos clients en temps réel. Chaque fois que les données changent, Firebase met à jour les applications sur chaque appareil (mobile ou Web). Si votre application Firebase fonctionne hors ligne, ses données seront synchronisées une fois la connectivité rétablie.\newline
 	le SDK pour (Software Developement Kit) de Firebase regroupe tous les API et il est facile a intégrer dans l'application.
@@ -100,15 +100,15 @@ Les différentes parties vont être décrits comme suit :
 \label{ssub:application_native}
 \begin{itemize}
 	\item Notre application a besoin d’accéder rapidement à toutes les fonctionnalités du téléphone, du gps en passant par la caméra et le micro.
-	\item Les notifications push, uniquement disponibles sur les apps natives occupent une place centrale dans notre app. ils permettent d’alerter les passagers sur l'état de leurs offres ainsi que la position du conducteur en cas de prise en charge. Et au conducteur de recevoir des demandes.
+	\item Les notifications push, uniquement disponibles sur les apps natives occupent une place centrale dans notre app. Ils permettent d’alerter les passagers sur l'état de leurs offres ainsi que la position du conducteur en cas de prise en charge. Et au conducteur de recevoir des demandes.
 	\item le budget dédié au développement couvre les charges de ces dernières.
 \end{itemize}
 % subsubsection application_native (end)
 
 \subsubsection{Here} % (fold)
 \label{ssub:here}
-Dans ce cas le choix sur le prix que propose différents fournisseurs de service de cartographie.\newline
-Google a augmenté ses prix de 1400\%. et a limité sa version gratuite. C'est pourquoi ICI (Here) est beaucoup plus attrayant que Google, car nous pouvons utiliser le modèle fremium et utiliser 250 000 appels API par jour. Versus 28.000 de Google.\newline
+Dans ce cas le choix est basé sur le prix que propose différents fournisseurs de service de cartographie.\newline
+Google a augmenté ses prix de 1400\%, et a limité sa version gratuite. C'est pourquoi ICI (Here) est beaucoup plus attrayant que Google, car nous pouvons utiliser le modèle fremium et utiliser 250 000 appels API par jour. Versus 28.000 de Google.\newline
 La figure ci-dessous compare les deux fournisseurs en termes de prix.\cite{heremaps}
 \fig{here.png}{HERE Maps API vs Google Maps API}{0.5}
 % subsubsection here (end)
@@ -119,12 +119,12 @@ La figure ci-dessous compare les deux fournisseurs en termes de prix.\cite{herem
 
 \subsubsection{API Rest} % (fold)
 \label{ssub:api_rest}
-Comme il a été dit dans la partie spécification des besoins notre application devrait être portable et extensible. les services web REST permet au mieux de répondre à ses exigences et sont plus faciles à implémenter, comparés aux méthodes du type RPC Remote Procedure Call comme SOAP.
+Comme il a été dit dans la partie spécification des besoins notre application devrait être portable et extensible. Les services web REST permet au mieux de répondre à ses exigences et sont plus faciles à implémenter, comparés aux méthodes du type RPC Remote Procedure Call comme SOAP.
 % subsubsection api_rest (end)
 \subsubsection{Digital Ocean} % (fold)
 \label{ssub:digital_ocean}
-Puisque notre utilisation du cloud se limite à louer une capacité de calcul et donc pas aux service. on a besoin d'un fournisseur cloud qui gère le matériel serveur, les couches de virtualisation, le stockage, les réseaux)\newline
-Digital Ocean  présente une solution qui répond bien à notre besoin d'héberger notre application à moindre coût.\cite{digitalocean}
+Puisque notre utilisation du cloud se limite à louer une capacité de calcul et donc pas aux services. On a besoin d'un fournisseur cloud qui gère le matériel serveur, les couches de virtualisation, le stockage, Les réseaux.\newline
+Digital Ocean présente une solution qui répond bien à notre besoin d'héberger notre application à moindre coût.\cite{digitalocean}
 \fig{digitalocean.png}{Performances CPU par dollar de toutes les machines virtuelles testées}{0.5}
 % subsubsection digital_ocean (end)
 % subsection partie_serveur (end)
@@ -134,8 +134,8 @@ Digital Ocean  présente une solution qui répond bien à notre besoin d'héberg
 \subsubsection{Mysql} % (fold)
 \label{ssub:le_choix_de_mysql}
 \begin{itemize}
-	\item Le projet MySQL a rendu son code source disponible sous les termes de la GNU General Public License, donc il représente une solution a moindre coût, l'autre avantage est qu'il y a une grande communauté derrière, par conséquent, nous pouvons facilement apprendre et dépanner MySQL à partir de différentes sources comme des blogs, des livres blancs et des livres.
-	\item Nous avons pas de données sur le nombre d'utilisateur à venir, donc la mise à l'échelle et la réplication sont des fonctions primordiales et notre SGBD les prennent  en charge.
+	\item Le projet MySQL a rendu son code source disponible sous les termes de la GNU General Public License, donc il représente une solution à moindre coût, l'autre avantage est qu'il y a une grande communauté derrière, par conséquent, nous pouvons facilement apprendre et dépanner MySQL à partir de différentes sources comme des blogs, des livres blancs et des livres.
+	\item Nous n'avons pas de données sur le nombre d'utilisateur à venir, donc la mise à l'échelle et la réplication sont des fonctions primordiales et notre SGBD les prennent  en charge.
 	\item Les transactions sont simples, les données sur le covoiturage planifié sont le plus souvent demandées en lecture, donc les performances de mysql sont largement suffisantes.
 \end{itemize}
 % subsubsection le_choix_de_mysql (end)
@@ -146,7 +146,7 @@ Digital Ocean  présente une solution qui répond bien à notre besoin d'héberg
 	\item Dans le cas des données sur le covoiturage dynamique (offres, demandes, position des conducteurs...), l’écriture et la lecture en temps réel est le premier facteur à prendre en compte. la raison derrière le choix est que Firebase est essentiellement un service cloud fourni par Google, il fonctionne donc mieux que les autres serveurs et fournisseurs de services backend. (une étude détaillée nous manquait)
 	\item Vu la contrainte temporelle: 4 mois pour développer l'application. Firebase économise beaucoup de temps puisque il offre un ensemble de services prêts à l'emploi, cela veut dire qu'il n'est pas seulement un système de gestion de données mais un logiciel en tant que service SaaS.
 	\item En mode développement la plateforme est gratuite.
-	\item Firebase c'est tout un eco-systeme donc nous pouvons intégrer gratuitement des services comme Google Analytics qui nous aide à comprendre comment les gens utilisent notre application. L'outil capture automatiquement un certain nombre d'événements et de propriétés utilisateur et permet également de définir nos propres événements personnalisés pour mesurer les éléments qui importent à l'entreprise. 
+	\item Firebase c'est tout un écosystème donc nous pouvons intégrer gratuitement des services comme Google Analytics qui nous aide à comprendre comment les gens utilisent notre application. L'outil capture automatiquement un certain nombre d'événements et de propriétés utilisateur et permet également de définir nos propres événements personnalisés pour mesurer les éléments qui importent à l'entreprise. 
 \end{itemize}
 % subsubsection firebase (end)
 % subsection partie_base_de_données (end)
