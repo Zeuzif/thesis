@@ -5,7 +5,7 @@ Ce chapitre rassemble les ressources pour mener l'expression des besoins. Nous a
 Dans cette section on va décrire \textbf{QUI} utilisera notre système. On commence dans un premier lieu par considérer notre système comme une boite noire pour répondre à la question qui va interagir avec notre logiciel ?\newline
 les entités ou acteurs qui entre en jeu sont :
 \begin{itemize}
-	\item[$\bullet$] Utilisateur : Après son inscription, il peut consulter les offres de covoiturage planifiées, mais aucun autre service ne sera pour lui opérationnel tant qu'il n'a pas terminé le processus KYC (Know Your Customer), on détaille par la suite ce que le KYC dans notre cas.
+	\item[$\bullet$] Utilisateur : Après son inscription, il peut consulter les offres de covoiturage planifiées, mais aucun autre service ne sera pour lui opérationnel tant qu'il n'a pas terminé le processus KYC \nomenclature{KYC}{Know Your Customer.}(Know Your Customer), on détaille par la suite ce que le KYC dans notre cas.
 	\item[$\bullet$] Chauffeur: doit pourvoir ajouter des offres de covoiturage planifiées ou instantanées.
 	\item[$\bullet$] Passager: doit pouvoir faire des demandes de covoiturage instantanées et de réserver sa place dans les autres planifiées.
 \end{itemize}
@@ -174,11 +174,11 @@ Après la description formelle de nos besoins, on va décrire comment se déroul
 La figure \Figref{logigramme.png} décrit étape par étape les différentes tâches. Notant que ce processus se répète trois fois, si aucune offre n'est trouvée on notifie le passager, dans ce cas il a la possibilité de relancer la recherche manuellement.
 % subsection subsection_name (end)
 
-\subsection{Processus du matching} % (fold)
+\subsection{Processus du jumelage} % (fold)
 Pour des raisons de confidentialité, on ne va pas rentrer dans les détails d'implémentation et on va se limiter aux cas simples.\cite{schreieck2016matching}\newline
 Au début du processus, un conducteur qui veut partager sa voiture avec des passagers potentiels enregistre 
 une offre qu'on va noter $O = (O_D, O_A)$, où $O_D$ est le point (position géographique) de départ, et $O_A$
-le point d'arrivée. En plus le conducteur nous renseigne sa position en temps réel $O_t$, qu'elle met à jour chaque fois qu'il s'est déplacé d'une distance $d$. Le système procède au calcul et au découpage du trajet O en points distancés de $d$ ce qui nous donne que $O = (O_{1}, O_{2},\ldots , O_{n})$ avec $O_{1} = O_D$ et $O_{n} = O_A$ .\newline
+le point d'arrivée. En plus le conducteur nous renseigne sa position en temps réel $O_t$, qu'elle met à jour chaque fois qu'il s'est déplacé d'une distance $d$. Le système procède au calcul et au découpage du trajet O en points distancés de $d$ ce qui nous donne que $O = (O_{1}, O_{2},\ldots , O_{n})$ avec $O_{1} = O_D$ et $O_{n} = O_A$\newline
 Un passager qui demande un covoiturage enregistre sa demande qu'on note $D = (D_D, D_A)$, où $D_D$ est le point (position géographique) de départ, et $D_A$ le point d'arrivée.\newline
 Dans un premier temps on va considérer le scenario où on a une seule offre et une seule demande. Notons $C_D$ et $C_A$ l'ensemble des points des deux cercles ayant pour centre respectivement $D_D$ et $D_A$ et pour rayon $r$.
 Pour qu'un covoiturage ait lieu il faut : 
