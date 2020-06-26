@@ -12,17 +12,18 @@ Les différentes parties vont être décrits comme suit :
 	\item Couche présentation : c'est notre application cliente dans notre cas mobile, qui tourne sur le système IOS ou Android et assure l'affichage et le dialogue avec l'utilisateur.
 	\item Coté serveur : assure le traitement métier des données et correspond à la mise en œuvre de l'ensemble des règles de gestion et de la logique applicative, cette partie contient deux principaux services Web : l'un gère les covoiturages instantané et l'autre planifié. Elle est hébergée sur le cloud Digital Ocean :
 	\begin{itemize}
-		\item Service de covoiturage instantané : il assure les demandes et offres de covoiturage temps réel en utilisant l'algorithme de matching. chaque fois qu'un passager lance une offre il est intercepté par ce service qui lance le processus du matching. 
-		\item Service de covoiturage planifié : il est responsable des demandes et offres de covoiturage planifié ou statique. il est sollicité chaque fois une offre ajouté ou à chaque demande de prise en charge d'un passager par un conducteur.
+		\item Service de covoiturage instantané : il assure les demandes et offres de covoiturage temps réel en utilisant l'algorithme de matching. Chaque fois qu'un passager lance une offre, elle est interceptée par ce service qui lance le processus du matching. 
+		\item Service de covoiturage planifié : il est responsable des demandes et offres de covoiturage planifié ou statique. Il est sollicité chaque fois une offre est ajoutée ou à chaque demande de prise en charge d'un passager par un conducteur.
 	\end{itemize}
-	Nos API ou services sont conformes au standard REST (representational state transfer), donc la communication entre ses services est basée sur le protocole Http. Outre ils respectent des contraintes architecturales comme : La communication client–serveur s'effectue sans conservation de l'état de la session de communication sur le serveur entre deux requêtes successives.\cite{fielding2000architectural}
-	\item Base de données : Elle correspond à la partie gérant l'accès aux données de l'application, deux bases de données sont utilisées :
+	Nos API ou services sont conformes au standard REST\nomenclature{REST}{Representational state transfer.} (representational state transfer), donc la communication entre ces services est basée sur le protocole Http. Outre ils respectent des contraintes architecturales comme : la communication client–serveur s'effectue sans conservation de l'état de la session de communication sur le serveur entre deux requêtes successives.\cite{fielding2000architectural}
+	\item Base de données : Elle correspond à la partie gérant l'accès aux données de l'application, deux systèmes de gestion de bases de données sont utilisées :
 	\begin{itemize}
 		\item MySql : les informations sur les utilisateurs, les offres planifiés où autres donnés qui ne changent pas souvent, résident sur cette base.
-		\item Firebase : les données comme les offres instantanée et les positions des conducteurs sont sollicités en lecture en temps réel, donc ils seront hébergés sur cette base.
+		\item Firebase : les données comme les offres instantanées et les positions des conducteurs sont sollicitées en lecture en temps réel, donc elles seront hébergées sur cette base.
 	\end{itemize}
 \end{enumerate}
-\fig{architecture.png}{architecture de l'application}{0.5}
+\fig{architecture.png}{architecture de l'application}{0.7}
+\clearpage
 % subsubsection architecture_globale (end)
 \subsection{Architecture client side}
 \subsubsection{MVC} % (fold)
@@ -47,12 +48,12 @@ Les différentes parties vont être décrits comme suit :
 
  \subsubsection{Difficultés rencontrées} % (fold)
  \label{ssub:difficultés_rencontrées_et_pourquoi_mvvm_}
- Au fur et à mesure que notre application croît en taille et en portée, les problèmes complexes de maintenance commencent à surgir. Nous avons rencontré beaucoup de difficultés à tester nos contrôleurs et ce, même en essayant de les alléger et de déléguer beaucoup de fonctionnalités à des classes de services ou modèle. C'est ce qui nous a poussé à adopter une nouvelle structuration du code : le modèle MVVM.\cite{mvvm}\newline
+ Au fur et à mesure que notre application croît en taille et en portée, les problèmes complexes de maintenance commencent à surgir. Nous avons rencontré beaucoup de difficultés à tester nos contrôleurs et ce, même en essayant de les alléger et de déléguer beaucoup de fonctionnalités à des classes de services du modèle. C'est ce qui nous a poussé à adopter une nouvelle structuration du code : le modèle MVVM.\cite{mvvm}\newline
  MVVM vise à exporter les traitements de la logique de présentation dans des entités à part entière qui s'appellent les ViewModels, et qui seront placées entre la Vue/Contrôleur (qui désormais constitue une seule entité) et le modèle comme montre la figure\Figref{mvvm.png}.
  \begin{itemize}
  	\item Le modèle : reste le même que celui de MVC.
  	\item La vue/contrôleur : cette couche représente le contexte de l'interface utilisateur et ses interactions. Désormais, nous considérons les vues et leurs contrôleurs MVC comme une seule entité.
- 	\item Le View Model : le rôle qui incombe au ViewModel est de récupérer les données à partir du modèle et de les rendre disponibles à la vue sous une meilleure forme. De cette manière, on aura des contrôleurs beaucoup moins chargées qu'avant. On aurait allégé les tests UI puisqu'on a transformé une grande partie des contrôleurs en un modèle de données testable unitairement.
+ 	\item Le View Model : le rôle qui incombe au ViewModel est de récupérer les données à partir du modèle et de les rendre disponibles à la vue sous une meilleure forme. De cette manière, on aura des contrôleurs beaucoup moins chargés qu'avant. On aurait allégé les tests UI puisqu'on a transformé une grande partie des contrôleurs en un modèle de données testable unitairement.
  \end{itemize}
  \fig{mvvm.png}{le patron de conception MVVM}{0.2}
  Puisque je me suis penché plus sur le développement de l'application partie cliente sur ios, je vais me limiter à décrire les outils utilisés dans cette partie par la suite.
@@ -77,16 +78,16 @@ Les différentes parties vont être décrits comme suit :
 	qui permet de créer des interfaces graphiques.
 	\itemb \textbf{Core Data} : c'est un framework qui permet de faire persister les données en local (sur l'iphone), il fournit l’accès à une base de donnée standard (souvent SQLite) et une API orientée objet c'est à dire un ORM (Object Relational Mapping).
 	\itemb \textbf{Here} : il permet aux applications clientes d'utiliser les données de cartographie comme colonne vertébrale pour leurs applications mobiles, et aussi d'accéder à des informations telles que les vitesses moyennes sur route, l'accroissement du trafic et les charges maximales pouvant être transportées sur une route particulière
-	\itemb \textbf{Firebase} : un BaaS (Back-as-a-a-Service) qui permettra de stocker et de synchroniser les données sur tous vos clients en temps réel. Chaque fois que les données changent, Firebase met à jour les applications sur chaque appareil (mobile ou Web). Si votre application Firebase fonctionne hors ligne, ses données seront synchronisées une fois la connectivité rétablie.\newline
-	le SDK pour (Software Developement Kit) de Firebase regroupe tous les API et il est facile a intégrer dans l'application.
+	\itemb \textbf{Firebase} : un BaaS\nomenclature{BaaS}{Back as a a Service.} (Back-as-a-a-Service) qui permettra de stocker et de synchroniser les données sur tous vos clients en temps réel. Chaque fois que les données changent, Firebase met à jour les applications sur chaque appareil (mobile ou Web). Si votre application Firebase fonctionne hors ligne, ces données seront synchronisées une fois la connectivité rétablie.\newline
+	le SDK\nomenclature{SDK}{Software Developement Kit.} pour (Software Developement Kit) de Firebase regroupe toutes les API et il est facile a intégrer dans l'application.
 \end{itemize}
 % subsubsection subsubsection_name (end)
 
 \subsubsection{Outils} % (fold)
 \label{ssub:outils}
 \begin{itemize}
-	\itemb \textbf{Xcode} : un environnement de développement (IDE) pour macOS, Fournit toute une suite logicielle (graphiques, audio, etc.) pour développeurs et programmeurs. Il permet de créer des logiciels pour iOS, watchOS et tvOS.
-	\itemb \textbf{CocoaPods} : un gestionnaire de dépendances au niveau de l'application pour Objective-C, Swift et toutes les autres langues qui s'exécutent sur l'environnement d'exécution Objective-C, comme RubyMotion, et qui fournit un format standard pour la gestion des bibliothèques externes. il permet d'automatiser l’intégration des autres frameworks dans un projet.
+	\itemb \textbf{Xcode} : un environnement de développement (IDE)\nomenclature{IDE}{Integrated development environment.} pour macOS, Fournit toute une suite logicielle (graphiques, audio, etc.) pour développeurs et programmeurs. Il permet de créer des logiciels pour iOS, watchOS et tvOS.
+	\itemb \textbf{CocoaPods} : un gestionnaire de dépendances au niveau de l'application pour Objective-C, Swift et toutes les autres langues qui s'exécutent sur l'environnement d'exécution Objective-C, comme RubyMotion, et qui fournit un format standard pour la gestion des bibliothèques externes. Il permet d'automatiser l’intégration des autres frameworks dans un projet.
 	\itemb \textbf{Postman} : un outil qui permet d'interroger et tester les webservices et API, il propose de nombreuses fonctionnalités, une prise en main rapide et une interface graphique agréable.
 \end{itemize}
 % subsubsection outils (end)
@@ -96,11 +97,11 @@ Les différentes parties vont être décrits comme suit :
 \label{sec:justification_du_choix_technique}
 \subsection{partie cliente} % (fold)
 \label{sub:partie_cliente}
-\subsubsection{Applications natives} % (fold)
+\subsubsection{Application native} % (fold)
 \label{ssub:application_native}
 \begin{itemize}
 	\item Notre application a besoin d’accéder rapidement à toutes les fonctionnalités du téléphone, du gps en passant par la caméra et le micro.
-	\item Les notifications push, uniquement disponibles sur les apps natives occupent une place centrale dans notre app. Ils permettent d’alerter les passagers sur l'état de leurs offres ainsi que la position du conducteur en cas de prise en charge. Et au conducteur de recevoir des demandes.
+	\item Les notifications push, uniquement disponibles sur les apps natives occupent une place centrale dans notre app. Ils permettent d’alerter les passagers sur l'état de leurs offres ainsi que la position du conducteur en cas de prise en charge, et au conducteur de recevoir des demandes.
 	\item le budget dédié au développement couvre les charges de ces dernières.
 \end{itemize}
 % subsubsection application_native (end)
@@ -108,7 +109,7 @@ Les différentes parties vont être décrits comme suit :
 \subsubsection{Here} % (fold)
 \label{ssub:here}
 Dans ce cas le choix est basé sur le prix que propose différents fournisseurs de service de cartographie.\newline
-Google a augmenté ses prix de 1400\%, et a limité sa version gratuite. C'est pourquoi ICI (Here) est beaucoup plus attrayant que Google, car nous pouvons utiliser le modèle fremium et utiliser 250 000 appels API par jour. Versus 28.000 de Google.\newline
+Google a augmenté ses prix de 1400\%, et a limité sa version gratuite. C'est pourquoi ICI (Here) est beaucoup plus attrayant que Google, car nous pouvons utiliser le modèle fremium en mode développement afin d'utiliser 250 000 appels API par jour. Versus 28.000 de Google.\newline
 La figure ci-dessous compare les deux fournisseurs en termes de prix.\cite{heremaps}
 \fig{here.png}{HERE Maps API vs Google Maps API}{0.5}
 % subsubsection here (end)
@@ -117,13 +118,13 @@ La figure ci-dessous compare les deux fournisseurs en termes de prix.\cite{herem
 \subsection{Partie serveur} % (fold)
 \label{sub:partie_serveur}
 
-\subsubsection{API Rest} % (fold)
+\subsubsection{API Rest\nomenclature{API}{Application Programming Interface.}} % (fold)
 \label{ssub:api_rest}
-Comme il a été dit dans la partie spécification des besoins notre application devrait être portable et extensible. Les services web REST permet au mieux de répondre à ses exigences et sont plus faciles à implémenter, comparés aux méthodes du type RPC Remote Procedure Call comme SOAP.
+Comme il a été dit dans la partie spécification des besoins notre application devrait être portable et extensible. Les services web REST permet au mieux de répondre à ses exigences et sont plus faciles à implémenter, comparés aux méthodes du type RPC\nomenclature{RPC}{Remote Procedure Call.} (Remote Procedure Call) comme SOAP.
 % subsubsection api_rest (end)
 \subsubsection{Digital Ocean} % (fold)
 \label{ssub:digital_ocean}
-Puisque notre utilisation du cloud se limite à louer une capacité de calcul et donc pas aux services. On a besoin d'un fournisseur cloud qui gère le matériel serveur, les couches de virtualisation, le stockage, Les réseaux.\newline
+Puisque notre utilisation du cloud se limite à louer une capacité de calcul et donc pas aux services. On a besoin d'un fournisseur cloud qui gère le matériel serveur, les couches de virtualisation, le stockage et les réseaux.\newline
 Digital Ocean présente une solution qui répond bien à notre besoin d'héberger notre application à moindre coût.\cite{digitalocean}
 \fig{digitalocean.png}{Performances CPU par dollar de toutes les machines virtuelles testées}{0.5}
 % subsubsection digital_ocean (end)
@@ -134,8 +135,8 @@ Digital Ocean présente une solution qui répond bien à notre besoin d'héberge
 \subsubsection{Mysql} % (fold)
 \label{ssub:le_choix_de_mysql}
 \begin{itemize}
-	\item Le projet MySQL a rendu son code source disponible sous les termes de la GNU General Public License, donc il représente une solution à moindre coût, l'autre avantage est qu'il y a une grande communauté derrière, par conséquent, nous pouvons facilement apprendre et dépanner MySQL à partir de différentes sources comme des blogs, des livres blancs et des livres.
-	\item Nous n'avons pas de données sur le nombre d'utilisateur à venir, donc la mise à l'échelle et la réplication sont des fonctions primordiales et notre SGBD les prennent  en charge.
+	\item Le projet MySQL a rendu son code source disponible sous les termes de la GNU\nomenclature{GNU}{General Public License.} (General Public License), donc il représente une solution à moindre coût, l'autre avantage est qu'il y a une grande communauté derrière, par conséquent, nous pouvons facilement apprendre et dépanner MySQL à partir de différentes sources comme des blogs, des livres blancs et des livres.
+	\item Nous n'avons pas de données sur le nombre d'utilisateur à venir, donc la mise à l'échelle et la réplication sont des fonctions primordiales et notre SGBD\nomenclature{SGBD}{Système de Gestion de Base de Données.} les prennent  en charge.
 	\item Les transactions sont simples, les données sur le covoiturage planifié sont le plus souvent demandées en lecture, donc les performances de mysql sont largement suffisantes.
 \end{itemize}
 % subsubsection le_choix_de_mysql (end)
@@ -143,8 +144,8 @@ Digital Ocean présente une solution qui répond bien à notre besoin d'héberge
 \subsubsection{Firebase} % (fold)
 \label{ssub:firebase}
 \begin{itemize}
-	\item Dans le cas des données sur le covoiturage dynamique (offres, demandes, position des conducteurs...), l’écriture et la lecture en temps réel est le premier facteur à prendre en compte. la raison derrière le choix est que Firebase est essentiellement un service cloud fourni par Google, il fonctionne donc mieux que les autres serveurs et fournisseurs de services backend. (une étude détaillée nous manquait)
-	\item Vu la contrainte temporelle: 4 mois pour développer l'application. Firebase économise beaucoup de temps puisque il offre un ensemble de services prêts à l'emploi, cela veut dire qu'il n'est pas seulement un système de gestion de données mais un logiciel en tant que service SaaS.
+	\item Dans le cas des données sur le covoiturage dynamique (offres, demandes, position des conducteurs...), l’écriture et la lecture en temps réel est le premier facteur à prendre en compte. La raison derrière le choix est que Firebase est essentiellement un service cloud fourni par Google, il fonctionne donc mieux que les autres serveurs et fournisseurs de services backend. (une étude détaillée nous manquait)
+	\item Vu la contrainte temporelle: 4 mois pour développer l'application. Firebase économise beaucoup de temps, puisque il offre un ensemble de services prêts à l'emploi, cela veut dire qu'il n'est pas seulement un système de gestion de données mais un logiciel en tant que service SaaS.
 	\item En mode développement la plateforme est gratuite.
 	\item Firebase c'est tout un écosystème donc nous pouvons intégrer gratuitement des services comme Google Analytics qui nous aide à comprendre comment les gens utilisent notre application. L'outil capture automatiquement un certain nombre d'événements et de propriétés utilisateur et permet également de définir nos propres événements personnalisés pour mesurer les éléments qui importent à l'entreprise. 
 \end{itemize}
