@@ -12,8 +12,8 @@ Les différentes parties vont être décrits comme suit :
 	\item Couche présentation : c'est notre application cliente dans notre cas mobile, qui tourne sur le système IOS ou Android et assure l'affichage et le dialogue avec l'utilisateur.
 	\item Coté serveur : assure le traitement métier des données et correspond à la mise en œuvre de l'ensemble des règles de gestion et de la logique applicative, cette partie contient deux principaux services Web : l'un gère les covoiturages instantané et l'autre planifié. Elle est hébergée sur le cloud Digital Ocean :
 	\begin{itemize}
-		\item Service de covoiturage instantané : il assure les demandes et offres de covoiturage temps réel en utilisant l'algorithme de matching. Chaque fois qu'un passager lance une offre, elle est interceptée par ce service qui lance le processus du matching. 
-		\item Service de covoiturage planifié : il est responsable des demandes et offres de covoiturage planifié ou statique. Il est sollicité chaque fois une offre est ajoutée ou à chaque demande de prise en charge d'un passager par un conducteur.
+		\item Service de covoiturage instantané : il assure les demandes et offres de covoiturage temps réel en utilisant l'algorithme de matching. Chaque fois qu'un passager lance une demande, elle est interceptée par ce service qui lance le processus du matching. 
+		\item Service de covoiturage planifié : il est responsable des demandes et offres de covoiturage planifié ou statique. Il est sollicité chaque fois une offre de covoiturage planifié (zones interurbaines) est ajoutée ou à chaque demande de prise en charge d'un passager par un conducteur.
 	\end{itemize}
 	Nos API ou services sont conformes au standard REST\nomenclature{REST}{Representational state transfer.} (representational state transfer), donc la communication entre ces services est basée sur le protocole Http. Outre ils respectent des contraintes architecturales comme : la communication client–serveur s'effectue sans conservation de l'état de la session de communication sur le serveur entre deux requêtes successives.\cite{fielding2000architectural}
 	\item Base de données : Elle correspond à la partie gérant l'accès aux données de l'application, deux systèmes de gestion de bases de données sont utilisées :
@@ -22,7 +22,7 @@ Les différentes parties vont être décrits comme suit :
 		\item Firebase : les données comme les offres instantanées et les positions des conducteurs sont sollicitées en lecture en temps réel, donc elles seront hébergées sur cette base.
 	\end{itemize}
 \end{enumerate}
-\fig{architecture.png}{architecture de l'application}{0.7}
+\fig{architecture.png}{Architecture de l'application}{0.7}
 \clearpage
 % subsubsection architecture_globale (end)
 \subsection{Architecture client side}
@@ -40,10 +40,10 @@ Les différentes parties vont être décrits comme suit :
  	\item La vue et le modèle ne peuvent \textbf{JAMAIS} communiquer. chacun d'eux ignore l’existence de l'autre.
  	\item Le modèle peut parler indirectement au contrôleur par des notifications ou des fermetures (closures). C'est une communication aveugle, c'est à dire le modèle ne contient pas de référence du contrôleur.
  	\item La vue parle au contrôleur en lui délégant la gestion des interactions de l'utilisateur avec l'application, le contrôleur dans ce cas s'engage à répondre à sa demande comme montre la figure 
- 	\fig{target_action.jpg}{le patron de conception target-action}{0.4}\newline
+ 	\fig{target_action.jpg}{Le patron de conception target-action}{0.4}\newline
  \end{itemize}
  La figure\Figref{mvc.png} résume ce qui a été dit dans cette partie.
- \fig{mvc.png}{patron de conception mvc}{0.2}
+ \fig{mvc.png}{Patron de conception mvc}{0.2}
  % subsubsection mvc (end) 
 
  \subsubsection{Difficultés rencontrées} % (fold)
@@ -55,7 +55,7 @@ Les différentes parties vont être décrits comme suit :
  	\item La vue/contrôleur : cette couche représente le contexte de l'interface utilisateur et ses interactions. Désormais, nous considérons les vues et leurs contrôleurs MVC comme une seule entité.
  	\item Le View Model : le rôle qui incombe au ViewModel est de récupérer les données à partir du modèle et de les rendre disponibles à la vue sous une meilleure forme. De cette manière, on aura des contrôleurs beaucoup moins chargés qu'avant. On aurait allégé les tests UI puisqu'on a transformé une grande partie des contrôleurs en un modèle de données testable unitairement.
  \end{itemize}
- \fig{mvvm.png}{le patron de conception MVVM}{0.2}
+ \fig{mvvm.png}{Le patron de conception MVVM}{0.2}
  Puisque je me suis penché plus sur le développement de l'application partie cliente sur ios, je vais me limiter à décrire les outils utilisés dans cette partie par la suite.
  % subsubsection difficultés_rencontrées_et_pourquoi_mvvm_ (end)
 % section architecture (end)
